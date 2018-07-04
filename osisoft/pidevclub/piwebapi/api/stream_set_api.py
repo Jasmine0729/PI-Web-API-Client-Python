@@ -2131,6 +2131,152 @@ class StreamSetApi(object):
 				collection_formats =collection_formats)
 
 
+	def retrieve_stream_set_updates(self, marker, selected_fields=None, web_id_type=None, **kwargs):
+		kwargs['_return_http_data_only'] = True
+		if kwargs.get('callback'):
+			return self.retrieve_stream_set_updates_with_http_info(marker, selected_fields, web_id_type, **kwargs)
+		else:
+			(data) = self.retrieve_stream_set_updates_with_http_info(marker, selected_fields, web_id_type, **kwargs)
+			return data
+
+	def retrieve_stream_set_updates_with_http_info(self, marker, selected_fields=None, web_id_type=None, **kwargs):
+		all_params = ['marker', 'selected_fields', 'web_id_type']
+		all_params.append('callback')
+		all_params.append('_return_http_data_only')
+		all_params.append('_preload_content')
+		all_params.append('_request_timeout')
+
+		params = locals()
+		for key, val in iteritems(params['kwargs']):
+			if key not in all_params:
+				raise TypeError(
+					"Got an unexpected keyword argument '%s'"
+					" to method retrieve_stream_set_updates_with_http_info" % key
+				)
+			params[key] = val
+		del params['kwargs']
+
+		if ('marker' not in params) or (params['marker'] is None):
+			raise ValueError("Missing the required parameter `marker` when calling `retrieve_stream_set_updates_with_http_info`")
+
+		collection_formats = {}
+
+		query_params = {}
+
+		path_params = {}
+
+		header_params = {}
+
+		form_params = []
+		local_var_files = {}
+
+		body_params = None
+		if 'marker' in params:
+			if (params['marker'] is not None):
+				query_params['marker'] = params['marker']
+				collection_formats['marker'] = 'multi'
+		if 'selected_fields' in params:
+			if (params['selected_fields'] is not None):
+				query_params['selectedFields'] = params['selected_fields']
+		if 'web_id_type' in params:
+			if (params['web_id_type'] is not None):
+				query_params['webIdType'] = params['web_id_type']
+
+		header_params['Accept'] = self.api_client.\
+			select_header_accept(['application/json', 'text/json', 'text/html', 'application/x-ms-application'])
+
+
+		header_params['Content-Type'] = self.api_client.\
+			select_header_content_type([])
+
+		return self.api_client.call_api('/streamsets/updates', 'GET',
+				path_params,
+				query_params,
+				header_params,
+				body =body_params,
+				post_params =form_params,
+				files =local_var_files,
+				response_type ='PIItemsStreamUpdatesRetrieve',
+				callback =params.get('callback'),
+				_return_http_data_only =params.get('_return_http_data_only'),
+				_preload_content =params.get('_preload_content', True),
+				_request_timeout=params.get('_request_timeout'),
+				collection_formats =collection_formats)
+
+
+	def register_stream_set_updates(self, web_id, selected_fields=None, web_id_type=None, **kwargs):
+		kwargs['_return_http_data_only'] = True
+		if kwargs.get('callback'):
+			return self.register_stream_set_updates_with_http_info(web_id, selected_fields, web_id_type, **kwargs)
+		else:
+			(data) = self.register_stream_set_updates_with_http_info(web_id, selected_fields, web_id_type, **kwargs)
+			return data
+
+	def register_stream_set_updates_with_http_info(self, web_id, selected_fields=None, web_id_type=None, **kwargs):
+		all_params = ['web_id', 'selected_fields', 'web_id_type']
+		all_params.append('callback')
+		all_params.append('_return_http_data_only')
+		all_params.append('_preload_content')
+		all_params.append('_request_timeout')
+
+		params = locals()
+		for key, val in iteritems(params['kwargs']):
+			if key not in all_params:
+				raise TypeError(
+					"Got an unexpected keyword argument '%s'"
+					" to method register_stream_set_updates_with_http_info" % key
+				)
+			params[key] = val
+		del params['kwargs']
+
+		if ('web_id' not in params) or (params['web_id'] is None):
+			raise ValueError("Missing the required parameter `web_id` when calling `register_stream_set_updates_with_http_info`")
+
+		collection_formats = {}
+
+		query_params = {}
+
+		path_params = {}
+
+		header_params = {}
+
+		form_params = []
+		local_var_files = {}
+
+		body_params = None
+		if 'web_id' in params:
+			if (params['web_id'] is not None):
+				query_params['webId'] = params['web_id']
+				collection_formats['webId'] = 'multi'
+		if 'selected_fields' in params:
+			if (params['selected_fields'] is not None):
+				query_params['selectedFields'] = params['selected_fields']
+		if 'web_id_type' in params:
+			if (params['web_id_type'] is not None):
+				query_params['webIdType'] = params['web_id_type']
+
+		header_params['Accept'] = self.api_client.\
+			select_header_accept(['application/json', 'text/json', 'text/html', 'application/x-ms-application'])
+
+
+		header_params['Content-Type'] = self.api_client.\
+			select_header_content_type([])
+
+		return self.api_client.call_api('/streamsets/updates', 'POST',
+				path_params,
+				query_params,
+				header_params,
+				body =body_params,
+				post_params =form_params,
+				files =local_var_files,
+				response_type ='PIItemsStreamUpdatesRegister',
+				callback =params.get('callback'),
+				_return_http_data_only =params.get('_return_http_data_only'),
+				_preload_content =params.get('_preload_content', True),
+				_request_timeout=params.get('_request_timeout'),
+				collection_formats =collection_formats)
+
+
 	def get_values_ad_hoc(self, web_id, selected_fields=None, sort_field=None, sort_order=None, time=None, time_zone=None, web_id_type=None, **kwargs):
 		kwargs['_return_http_data_only'] = True
 		if kwargs.get('callback'):

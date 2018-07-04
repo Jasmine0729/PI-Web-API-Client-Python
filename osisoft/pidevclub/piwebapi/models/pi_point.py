@@ -28,9 +28,12 @@ class PIPoint(object):
 		'point_class': 'str',
 		'point_type': 'str',
 		'digital_set_name': 'str',
+		'span': 'float',
+		'zero': 'float',
 		'engineering_units': 'str',
 		'step': 'bool',
 		'future': 'bool',
+		'display_digits': 'int',
 		'links': 'PIPointLinks',
 		'web_exception': 'PIWebException',
 	}
@@ -44,13 +47,16 @@ class PIPoint(object):
 		'point_class': 'PointClass',
 		'point_type': 'PointType',
 		'digital_set_name': 'DigitalSetName',
+		'span': 'Span',
+		'zero': 'Zero',
 		'engineering_units': 'EngineeringUnits',
 		'step': 'Step',
 		'future': 'Future',
+		'display_digits': 'DisplayDigits',
 		'links': 'Links',
 		'web_exception': 'WebException',
 	}
-	def __init__(self, web_id=None, id=None, name=None, path=None, descriptor=None, point_class=None, point_type=None, digital_set_name=None, engineering_units=None, step=None, future=None, links=None, web_exception=None):
+	def __init__(self, web_id=None, id=None, name=None, path=None, descriptor=None, point_class=None, point_type=None, digital_set_name=None, span=None, zero=None, engineering_units=None, step=None, future=None, display_digits=None, links=None, web_exception=None):
 
 		self._web_id = None
 		self._id = None
@@ -60,9 +66,12 @@ class PIPoint(object):
 		self._point_class = None
 		self._point_type = None
 		self._digital_set_name = None
+		self._span = None
+		self._zero = None
 		self._engineering_units = None
 		self._step = None
 		self._future = None
+		self._display_digits = None
 		self._links = None
 		self._web_exception = None
 
@@ -82,12 +91,18 @@ class PIPoint(object):
 			self.point_type = point_type
 		if digital_set_name is not None:
 			self.digital_set_name = digital_set_name
+		if span is not None:
+			self.span = span
+		if zero is not None:
+			self.zero = zero
 		if engineering_units is not None:
 			self.engineering_units = engineering_units
 		if step is not None:
 			self.step = step
 		if future is not None:
 			self.future = future
+		if display_digits is not None:
+			self.display_digits = display_digits
 		if links is not None:
 			self.links = links
 		if web_exception is not None:
@@ -158,6 +173,22 @@ class PIPoint(object):
 		self._digital_set_name = digital_set_name
 
 	@property
+	def span(self):
+		return self._span
+
+	@span.setter
+	def span(self, span):
+		self._span = span
+
+	@property
+	def zero(self):
+		return self._zero
+
+	@zero.setter
+	def zero(self, zero):
+		self._zero = zero
+
+	@property
 	def engineering_units(self):
 		return self._engineering_units
 
@@ -180,6 +211,14 @@ class PIPoint(object):
 	@future.setter
 	def future(self, future):
 		self._future = future
+
+	@property
+	def display_digits(self):
+		return self._display_digits
+
+	@display_digits.setter
+	def display_digits(self, display_digits):
+		self._display_digits = display_digits
 
 	@property
 	def links(self):

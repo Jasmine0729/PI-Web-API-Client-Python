@@ -95,6 +95,7 @@ Class | Method | HTTP request | Description
 *AssetServerApi* | [**get_analysis_rule_plug_ins**](docs/api/AssetServerApi.md#get_analysis_rule_plug_ins) | **GET** /assetservers/{webId}/analysisruleplugins | Retrieve a list of all Analysis Rule Plug-in's.
 *AssetServerApi* | [**get_databases**](docs/api/AssetServerApi.md#get_databases) | **GET** /assetservers/{webId}/assetdatabases | Retrieve a list of all Asset Databases on the specified Asset Server.
 *AssetServerApi* | [**create_asset_database**](docs/api/AssetServerApi.md#create_asset_database) | **POST** /assetservers/{webId}/assetdatabases | Create an asset database.
+*AssetServerApi* | [**get_notification_contact_templates**](docs/api/AssetServerApi.md#get_notification_contact_templates) | **GET** /assetservers/{webId}/notificationcontacttemplates | Retrieve a list of all notification contact templates on the specified Asset Server.
 *AssetServerApi* | [**get_security**](docs/api/AssetServerApi.md#get_security) | **GET** /assetservers/{webId}/security | Get the security information of the specified security item associated with the asset server for a specified user.
 *AssetServerApi* | [**get_security_entries**](docs/api/AssetServerApi.md#get_security_entries) | **GET** /assetservers/{webId}/securityentries | Retrieve the security entries of the specified security item associated with the asset server based on the specified criteria. By default, all security entries for this asset server are returned.
 *AssetServerApi* | [**create_security_entry**](docs/api/AssetServerApi.md#create_security_entry) | **POST** /assetservers/{webId}/securityentries | Create a security entry owned by the asset server.
@@ -185,6 +186,8 @@ Class | Method | HTTP request | Description
 *ElementApi* | [**get_elements**](docs/api/ElementApi.md#get_elements) | **GET** /elements/{webId}/elements | Retrieve elements based on the specified conditions. By default, this method selects immediate children of the specified element.
 *ElementApi* | [**create_element**](docs/api/ElementApi.md#create_element) | **POST** /elements/{webId}/elements | Create a child element.
 *ElementApi* | [**get_event_frames**](docs/api/ElementApi.md#get_event_frames) | **GET** /elements/{webId}/eventframes | Retrieve event frames that reference this element based on the specified conditions. By default, returns all event frames that reference this element that have been active in the past 8 hours.
+*ElementApi* | [**get_notification_rules**](docs/api/ElementApi.md#get_notification_rules) | **GET** /elements/{webId}/notificationrules | Retrieve notification rules for an element
+*ElementApi* | [**get_paths**](docs/api/ElementApi.md#get_paths) | **GET** /elements/{webId}/paths | Get a list of the full or relative paths to this element.
 *ElementApi* | [**get_referenced_elements**](docs/api/ElementApi.md#get_referenced_elements) | **GET** /elements/{webId}/referencedelements | Retrieve referenced elements based on the specified conditions. By default, this method selects all referenced elements of the current resource.
 *ElementApi* | [**add_referenced_element**](docs/api/ElementApi.md#add_referenced_element) | **POST** /elements/{webId}/referencedelements | Add a reference to an existing element to the child elements collection.
 *ElementApi* | [**remove_referenced_element**](docs/api/ElementApi.md#remove_referenced_element) | **DELETE** /elements/{webId}/referencedelements | Remove a reference to an existing element from the child elements collection.
@@ -205,7 +208,10 @@ Class | Method | HTTP request | Description
 *ElementTemplateApi* | [**get_analysis_templates**](docs/api/ElementTemplateApi.md#get_analysis_templates) | **GET** /elementtemplates/{webId}/analysistemplates | Get analysis templates for an element template.
 *ElementTemplateApi* | [**get_attribute_templates**](docs/api/ElementTemplateApi.md#get_attribute_templates) | **GET** /elementtemplates/{webId}/attributetemplates | Get child attribute templates for an element template.
 *ElementTemplateApi* | [**create_attribute_template**](docs/api/ElementTemplateApi.md#create_attribute_template) | **POST** /elementtemplates/{webId}/attributetemplates | Create an attribute template.
+*ElementTemplateApi* | [**get_base_element_templates**](docs/api/ElementTemplateApi.md#get_base_element_templates) | **GET** /elementtemplates/{webId}/baseelementtemplates | Get base element templates for an element template.
 *ElementTemplateApi* | [**get_categories**](docs/api/ElementTemplateApi.md#get_categories) | **GET** /elementtemplates/{webId}/categories | Get an element template's categories.
+*ElementTemplateApi* | [**get_derived_element_templates**](docs/api/ElementTemplateApi.md#get_derived_element_templates) | **GET** /elementtemplates/{webId}/derivedelementtemplates | Get derived element templates for an element template.
+*ElementTemplateApi* | [**get_notification_rule_templates**](docs/api/ElementTemplateApi.md#get_notification_rule_templates) | **GET** /elementtemplates/{webId}/notificationruletemplates | Get notification rule templates for an element template
 *ElementTemplateApi* | [**get_security**](docs/api/ElementTemplateApi.md#get_security) | **GET** /elementtemplates/{webId}/security | Get the security information of the specified security item associated with the element template for a specified user.
 *ElementTemplateApi* | [**get_security_entries**](docs/api/ElementTemplateApi.md#get_security_entries) | **GET** /elementtemplates/{webId}/securityentries | Retrieve the security entries associated with the element template based on the specified criteria. By default, all security entries for this element template are returned.
 *ElementTemplateApi* | [**create_security_entry**](docs/api/ElementTemplateApi.md#create_security_entry) | **POST** /elementtemplates/{webId}/securityentries | Create a security entry owned by the element template.
@@ -237,7 +243,9 @@ Class | Method | HTTP request | Description
 *EventFrameApi* | [**create_annotation**](docs/api/EventFrameApi.md#create_annotation) | **POST** /eventframes/{webId}/annotations | Create an annotation on an event frame.
 *EventFrameApi* | [**get_annotation_by_id**](docs/api/EventFrameApi.md#get_annotation_by_id) | **GET** /eventframes/{webId}/annotations/{id} | Get a specific annotation on an event frame.
 *EventFrameApi* | [**update_annotation**](docs/api/EventFrameApi.md#update_annotation) | **PATCH** /eventframes/{webId}/annotations/{id} | Update an annotation on an event frame by replacing items in its definition.
-*EventFrameApi* | [**delete_annotation**](docs/api/EventFrameApi.md#delete_annotation) | **DELETE** /eventframes/{webId}/annotations/{id} | Delete an annotation on an event frame.
+*EventFrameApi* | [**delete_annotation**](docs/api/EventFrameApi.md#delete_annotation) | **DELETE** /eventframes/{webId}/annotations/{id} | Delete an annotation on an event frame. If the annotation has attached media, the attached media will also be deleted.
+*EventFrameApi* | [**delete_annotation_attachment_media_by_id**](docs/api/EventFrameApi.md#delete_annotation_attachment_media_by_id) | **DELETE** /eventframes/{webId}/annotations/{id}/attachment/media | Delete attached media from an annotation on an event frame.
+*EventFrameApi* | [**get_annotation_attachment_media_metadata_by_id**](docs/api/EventFrameApi.md#get_annotation_attachment_media_metadata_by_id) | **GET** /eventframes/{webId}/annotations/{id}/attachment/media/metadata | Gets the metadata of the media attached to the specified annotation.
 *EventFrameApi* | [**get_attributes**](docs/api/EventFrameApi.md#get_attributes) | **GET** /eventframes/{webId}/attributes | Get the attributes of the specified event frame.
 *EventFrameApi* | [**create_attribute**](docs/api/EventFrameApi.md#create_attribute) | **POST** /eventframes/{webId}/attributes | Create a new attribute of the specified event frame.
 *EventFrameApi* | [**capture_values**](docs/api/EventFrameApi.md#capture_values) | **POST** /eventframes/{webId}/attributes/capture | Calls the EventFrame's CaptureValues method.
@@ -257,6 +265,16 @@ Class | Method | HTTP request | Description
 *EventFrameApi* | [**get_event_frames_query**](docs/api/EventFrameApi.md#get_event_frames_query) | **GET** /eventframes/search | Retrieve event frames based on the specified conditions. Returns event frames using the specified search query string.
 *EventFrameApi* | [**create_search_by_attribute**](docs/api/EventFrameApi.md#create_search_by_attribute) | **POST** /eventframes/searchbyattribute | Create a link for a "Search EventFrames By Attribute Value" operation, whose queries are specified in the request content. The SearchRoot is specified by the Web Id of the root EventFrame. If the SearchRoot is not specified, then the search starts at the Asset Database. ElementTemplate must be provided as the Web ID of the ElementTemplate, which are used to create the EventFrames. All the attributes in the queries must be defined as AttributeTemplates on the ElementTemplate. An array of attribute value queries are ANDed together to find the desired Element objects. At least one value query must be specified. There are limitations on SearchOperators.
 *EventFrameApi* | [**execute_search_by_attribute**](docs/api/EventFrameApi.md#execute_search_by_attribute) | **GET** /eventframes/searchbyattribute/{searchId} | Execute a "Search EventFrames By Attribute Value" operation.
+*NotificationContactTemplateApi* | [**get**](docs/api/NotificationContactTemplateApi.md#get) | **GET** /notificationcontacttemplates/{webId} | Retrieve a notification contact template.
+*NotificationRuleApi* | [**get_notification_rules**](docs/api/NotificationRuleApi.md#get_notification_rules) | **GET** /notificationrules/{webId} | Retrieve a notification rule.
+*NotificationRuleApi* | [**get_notification_rule_subscribers**](docs/api/NotificationRuleApi.md#get_notification_rule_subscribers) | **GET** /notificationrules/{webId}/notificationrulesubscribers | Retrieve notification rule subscribers.
+*NotificationRuleApi* | [**get_notification_rules_query**](docs/api/NotificationRuleApi.md#get_notification_rules_query) | **GET** /notificationrules/search | Retrieve notification rules based on the specified conditions. Returns notification rules using the specified search query string.
+*NotificationRuleSubscriberApi* | [**get_notification_rule_subscriber_by_path**](docs/api/NotificationRuleSubscriberApi.md#get_notification_rule_subscriber_by_path) | **GET** /notificationrulesubscribers | Retrieve a notification rule subscriber by path.
+*NotificationRuleSubscriberApi* | [**get_notification_rule_subscriber**](docs/api/NotificationRuleSubscriberApi.md#get_notification_rule_subscriber) | **GET** /notificationrulesubscribers/{webId} | Retrieve a notification rule subscriber.
+*NotificationRuleSubscriberApi* | [**get_notification_rule_subscribers**](docs/api/NotificationRuleSubscriberApi.md#get_notification_rule_subscribers) | **GET** /notificationrulesubscribers/{webId}/notificationrulesubscribers | Retrieve notification rule subscriber subscribers.
+*NotificationRuleTemplateApi* | [**get**](docs/api/NotificationRuleTemplateApi.md#get) | **GET** /notificationruletemplates/{webId} | Get the specified notification rule template.
+*NotificationRuleTemplateApi* | [**get_notification_rule_template_subscribers**](docs/api/NotificationRuleTemplateApi.md#get_notification_rule_template_subscribers) | **GET** /notificationruletemplates/{webId}/notificationrulesubscribers | Retrieve notification rule template subscribers.
+*NotificationRuleTemplateApi* | [**get_notification_rule_templates_query**](docs/api/NotificationRuleTemplateApi.md#get_notification_rule_templates_query) | **GET** /notificationruletemplates/search | Retrieve Notification rule templates based on the specified conditions. Returns Notification rule templates using the specified search query string.
 *PointApi* | [**get_by_path**](docs/api/PointApi.md#get_by_path) | **GET** /points | Get a point by path.
 *PointApi* | [**get**](docs/api/PointApi.md#get) | **GET** /points/{webId} | Get a point.
 *PointApi* | [**update**](docs/api/PointApi.md#update) | **PATCH** /points/{webId} | Update a point.
@@ -289,8 +307,10 @@ Class | Method | HTTP request | Description
 *StreamApi* | [**get_recorded_at_time**](docs/api/StreamApi.md#get_recorded_at_time) | **GET** /streams/{webId}/recordedattime | Returns a single recorded value based on the passed time and retrieval mode from the stream.
 *StreamApi* | [**get_recorded_at_times**](docs/api/StreamApi.md#get_recorded_at_times) | **GET** /streams/{webId}/recordedattimes | Retrieves recorded values at the specified times.
 *StreamApi* | [**get_summary**](docs/api/StreamApi.md#get_summary) | **GET** /streams/{webId}/summary | Returns a summary over the specified time range for the stream.
+*StreamApi* | [**register_stream_update**](docs/api/StreamApi.md#register_stream_update) | **POST** /streams/{webId}/updates | Register for stream updates
 *StreamApi* | [**get_value**](docs/api/StreamApi.md#get_value) | **GET** /streams/{webId}/value | Returns the value of the stream at the specified time. By default, this is usually the current value.
 *StreamApi* | [**update_value**](docs/api/StreamApi.md#update_value) | **POST** /streams/{webId}/value | Updates a value for the specified stream.
+*StreamApi* | [**retrieve_stream_update**](docs/api/StreamApi.md#retrieve_stream_update) | **GET** /streams/updates/{marker} | Receive stream updates
 *StreamSetApi* | [**get_channel**](docs/api/StreamSetApi.md#get_channel) | **GET** /streamsets/{webId}/channel | Opens a channel that will send messages about any value changes for the attributes of an Element, Event Frame, or Attribute.
 *StreamSetApi* | [**get_end**](docs/api/StreamSetApi.md#get_end) | **GET** /streamsets/{webId}/end | Returns End of stream values of the attributes for an Element, Event Frame or Attribute
 *StreamSetApi* | [**get_interpolated**](docs/api/StreamSetApi.md#get_interpolated) | **GET** /streamsets/{webId}/interpolated | Returns interpolated values of attributes for an element, event frame or attribute over the specified time range at the specified sampling interval.
@@ -313,11 +333,13 @@ Class | Method | HTTP request | Description
 *StreamSetApi* | [**get_recorded_at_time_ad_hoc**](docs/api/StreamSetApi.md#get_recorded_at_time_ad_hoc) | **GET** /streamsets/recordedattime | Returns recorded values based on the passed time and retrieval mode.
 *StreamSetApi* | [**get_recorded_at_times_ad_hoc**](docs/api/StreamSetApi.md#get_recorded_at_times_ad_hoc) | **GET** /streamsets/recordedattimes | Returns recorded values of the specified streams at the specified times.
 *StreamSetApi* | [**get_summaries_ad_hoc**](docs/api/StreamSetApi.md#get_summaries_ad_hoc) | **GET** /streamsets/summary | Returns summary values of the specified streams.
+*StreamSetApi* | [**retrieve_stream_set_updates**](docs/api/StreamSetApi.md#retrieve_stream_set_updates) | **GET** /streamsets/updates | Receive stream updates
+*StreamSetApi* | [**register_stream_set_updates**](docs/api/StreamSetApi.md#register_stream_set_updates) | **POST** /streamsets/updates | Register for stream updates
 *StreamSetApi* | [**get_values_ad_hoc**](docs/api/StreamSetApi.md#get_values_ad_hoc) | **GET** /streamsets/value | Returns values of the specified streams.
 *StreamSetApi* | [**update_value_ad_hoc**](docs/api/StreamSetApi.md#update_value_ad_hoc) | **POST** /streamsets/value | Updates a single value for the specified streams.
 *SystemApi* | [**landing**](docs/api/SystemApi.md#landing) | **GET** /system | Get system links for this PI System Web API instance.
 *SystemApi* | [**cache_instances**](docs/api/SystemApi.md#cache_instances) | **GET** /system/cacheinstances | Get AF cache instances currently in use by the system. These are caches from which user requests are serviced. The number of instances depends on the number of users connected to the service, the service's authentication method, and the cache instance configuration.
-*SystemApi* | [**status**](docs/api/SystemApi.md#status) | **GET** /system/status | Get the system uptime, the system state and the number of cache instances for this PI System Web API instance.
+*SystemApi* | [**status**](docs/api/SystemApi.md#status) | **GET** /system/status | Get information about this PI Web API instance. Examples of information returned include the system uptime, the number of cache instances for this PI System Web API instance, and the system run state.
 *SystemApi* | [**user_info**](docs/api/SystemApi.md#user_info) | **GET** /system/userinfo | Get information about the Windows identity used to fulfill the request. This depends on the service's authentication method and the credentials passed by the client. The impersonation level of the Windows identity is included.
 *SystemApi* | [**versions**](docs/api/SystemApi.md#versions) | **GET** /system/versions | Get the current versions of the PI Web API instance and all external plugins.
 *ConfigurationApi* | [**list**](docs/api/ConfigurationApi.md#list) | **GET** /system/configuration | Get the current system configuration.
@@ -366,6 +388,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+- [PIAmbiguous](docs/models/PIAmbiguous.md)
 - [PIAnalysis](docs/models/PIAnalysis.md)
 - [PIAnalysisCategory](docs/models/PIAnalysisCategory.md)
 - [PIAnalysisCategoryLinks](docs/models/PIAnalysisCategoryLinks.md)
@@ -392,6 +415,7 @@ Class | Method | HTTP request | Description
 - [PIAttributeTraitLinks](docs/models/PIAttributeTraitLinks.md)
 - [PICacheInstance](docs/models/PICacheInstance.md)
 - [PIChannelInstance](docs/models/PIChannelInstance.md)
+- [PIDataPipeEvent](docs/models/PIDataPipeEvent.md)
 - [PIDataServer](docs/models/PIDataServer.md)
 - [PIDataServerLicense](docs/models/PIDataServerLicense.md)
 - [PIDataServerLicenseLinks](docs/models/PIDataServerLicenseLinks.md)
@@ -409,6 +433,8 @@ Class | Method | HTTP request | Description
 - [PIErrors](docs/models/PIErrors.md)
 - [PIEventFrame](docs/models/PIEventFrame.md)
 - [PIEventFrameLinks](docs/models/PIEventFrameLinks.md)
+- [PIExtendedTimedValue](docs/models/PIExtendedTimedValue.md)
+- [PIExtendedTimedValues](docs/models/PIExtendedTimedValues.md)
 - [PIItemAttribute](docs/models/PIItemAttribute.md)
 - [PIItemElement](docs/models/PIItemElement.md)
 - [PIItemEventFrame](docs/models/PIItemEventFrame.md)
@@ -439,6 +465,10 @@ Class | Method | HTTP request | Description
 - [PIItemsItemEventFrame](docs/models/PIItemsItemEventFrame.md)
 - [PIItemsItemPoint](docs/models/PIItemsItemPoint.md)
 - [PIItemsItemsSubstatus](docs/models/PIItemsItemsSubstatus.md)
+- [PIItemsNotificationContactTemplate](docs/models/PIItemsNotificationContactTemplate.md)
+- [PIItemsNotificationRule](docs/models/PIItemsNotificationRule.md)
+- [PIItemsNotificationRuleSubscriber](docs/models/PIItemsNotificationRuleSubscriber.md)
+- [PIItemsNotificationRuleTemplate](docs/models/PIItemsNotificationRuleTemplate.md)
 - [PIItemsPoint](docs/models/PIItemsPoint.md)
 - [PIItemsPointAttribute](docs/models/PIItemsPointAttribute.md)
 - [PIItemsSecurityEntry](docs/models/PIItemsSecurityEntry.md)
@@ -446,8 +476,11 @@ Class | Method | HTTP request | Description
 - [PIItemsSecurityMapping](docs/models/PIItemsSecurityMapping.md)
 - [PIItemsSecurityRights](docs/models/PIItemsSecurityRights.md)
 - [PIItemsStreamSummaries](docs/models/PIItemsStreamSummaries.md)
+- [PIItemsStreamUpdatesRegister](docs/models/PIItemsStreamUpdatesRegister.md)
+- [PIItemsStreamUpdatesRetrieve](docs/models/PIItemsStreamUpdatesRetrieve.md)
 - [PIItemsStreamValue](docs/models/PIItemsStreamValue.md)
 - [PIItemsStreamValues](docs/models/PIItemsStreamValues.md)
+- [PIItemsstring](docs/models/PIItemsstring.md)
 - [PIItemsSubstatus](docs/models/PIItemsSubstatus.md)
 - [PIItemsSummaryValue](docs/models/PIItemsSummaryValue.md)
 - [PIItemsTable](docs/models/PIItemsTable.md)
@@ -456,6 +489,13 @@ Class | Method | HTTP request | Description
 - [PIItemsUnitClass](docs/models/PIItemsUnitClass.md)
 - [PILanding](docs/models/PILanding.md)
 - [PILandingLinks](docs/models/PILandingLinks.md)
+- [PIMediaMetadata](docs/models/PIMediaMetadata.md)
+- [PIMediaMetadataLinks](docs/models/PIMediaMetadataLinks.md)
+- [PINotificationContactTemplate](docs/models/PINotificationContactTemplate.md)
+- [PINotificationContactTemplateLinks](docs/models/PINotificationContactTemplateLinks.md)
+- [PINotificationRule](docs/models/PINotificationRule.md)
+- [PINotificationRuleSubscriber](docs/models/PINotificationRuleSubscriber.md)
+- [PINotificationRuleTemplate](docs/models/PINotificationRuleTemplate.md)
 - [PIPaginationLinks](docs/models/PIPaginationLinks.md)
 - [PIPoint](docs/models/PIPoint.md)
 - [PIPointAttribute](docs/models/PIPointAttribute.md)
@@ -475,8 +515,11 @@ Class | Method | HTTP request | Description
 - [PISecurityMappingLinks](docs/models/PISecurityMappingLinks.md)
 - [PISecurityRights](docs/models/PISecurityRights.md)
 - [PISecurityRightsLinks](docs/models/PISecurityRightsLinks.md)
+- [PIStreamAnnotation](docs/models/PIStreamAnnotation.md)
 - [PIStreamSummaries](docs/models/PIStreamSummaries.md)
 - [PIStreamSummariesLinks](docs/models/PIStreamSummariesLinks.md)
+- [PIStreamUpdatesRegister](docs/models/PIStreamUpdatesRegister.md)
+- [PIStreamUpdatesRetrieve](docs/models/PIStreamUpdatesRetrieve.md)
 - [PIStreamValue](docs/models/PIStreamValue.md)
 - [PIStreamValueLinks](docs/models/PIStreamValueLinks.md)
 - [PIStreamValues](docs/models/PIStreamValues.md)

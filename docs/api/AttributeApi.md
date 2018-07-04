@@ -94,7 +94,7 @@ None
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 
 # **get_attributes**
-> get_attributes('web_id', 'category_name', 'max_count', 'name_filter', 'search_full_hierarchy', 'selected_fields', 'show_excluded', 'show_hidden', 'sort_field', 'sort_order', 'start_index', 'template_name', 'value_type', 'web_id_type')
+> get_attributes('web_id', 'category_name', 'max_count', 'name_filter', 'search_full_hierarchy', 'selected_fields', 'show_excluded', 'show_hidden', 'sort_field', 'sort_order', 'start_index', 'template_name', 'trait', 'trait_category', 'value_type', 'web_id_type')
 
 Get the child attributes of the specified attribute.
 
@@ -114,6 +114,8 @@ Name | Type | Description | Notes
  **sort_order** | **str**| The order that the returned collection is sorted. The default is 'Ascending'.. | [optional]
  **start_index** | **int**| The starting index (zero based) of the items to be returned. The default is 0.. | [optional]
  **template_name** | **str**| Specify that returned attributes must be members of this template. The default is no template filter.. | [optional]
+ **trait** | **list[str]**| The name of the attribute trait. Multiple traits may be specified with multiple instances of the parameter.. | [optional]
+ **trait_category** | **list[str]**| The category of the attribute traits. Multiple categories may be specified with multiple instances of the parameter. If the parameter is not specified, or if its value is "all", then all attribute traits of all categories will be returned.. | [optional]
  **value_type** | **str**| Specify that returned attributes' value type must be the given value type. The default is no value type filter.. | [optional]
  **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
 

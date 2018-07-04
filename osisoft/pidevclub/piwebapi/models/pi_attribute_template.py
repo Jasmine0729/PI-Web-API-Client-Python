@@ -38,6 +38,7 @@ class PIAttributeTemplate(object):
 		'has_children': 'bool',
 		'category_names': 'list[str]',
 		'trait_name': 'str',
+		'default_units_name_abbreviation': 'str',
 		'links': 'PIAttributeTemplateLinks',
 		'web_exception': 'PIWebException',
 	}
@@ -61,10 +62,11 @@ class PIAttributeTemplate(object):
 		'has_children': 'HasChildren',
 		'category_names': 'CategoryNames',
 		'trait_name': 'TraitName',
+		'default_units_name_abbreviation': 'DefaultUnitsNameAbbreviation',
 		'links': 'Links',
 		'web_exception': 'WebException',
 	}
-	def __init__(self, web_id=None, id=None, name=None, description=None, path=None, type=None, type_qualifier=None, default_units_name=None, default_value=None, data_reference_plug_in=None, config_string=None, is_configuration_item=None, is_excluded=None, is_hidden=None, is_manual_data_entry=None, has_children=None, category_names=None, trait_name=None, links=None, web_exception=None):
+	def __init__(self, web_id=None, id=None, name=None, description=None, path=None, type=None, type_qualifier=None, default_units_name=None, default_value=None, data_reference_plug_in=None, config_string=None, is_configuration_item=None, is_excluded=None, is_hidden=None, is_manual_data_entry=None, has_children=None, category_names=None, trait_name=None, default_units_name_abbreviation=None, links=None, web_exception=None):
 
 		self._web_id = None
 		self._id = None
@@ -84,6 +86,7 @@ class PIAttributeTemplate(object):
 		self._has_children = None
 		self._category_names = None
 		self._trait_name = None
+		self._default_units_name_abbreviation = None
 		self._links = None
 		self._web_exception = None
 
@@ -123,6 +126,8 @@ class PIAttributeTemplate(object):
 			self.category_names = category_names
 		if trait_name is not None:
 			self.trait_name = trait_name
+		if default_units_name_abbreviation is not None:
+			self.default_units_name_abbreviation = default_units_name_abbreviation
 		if links is not None:
 			self.links = links
 		if web_exception is not None:
@@ -271,6 +276,14 @@ class PIAttributeTemplate(object):
 	@trait_name.setter
 	def trait_name(self, trait_name):
 		self._trait_name = trait_name
+
+	@property
+	def default_units_name_abbreviation(self):
+		return self._default_units_name_abbreviation
+
+	@default_units_name_abbreviation.setter
+	def default_units_name_abbreviation(self, default_units_name_abbreviation):
+		self._default_units_name_abbreviation = default_units_name_abbreviation
 
 	@property
 	def links(self):

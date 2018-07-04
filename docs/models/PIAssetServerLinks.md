@@ -5,6 +5,7 @@ Name | Type | Notes
 ------------ | ------------- | -------------
 **self** | **str**
 **databases** | **str**
+**notification_contact_templates** | **str**
 **security_identities** | **str**
 **security_mappings** | **str**
 **unit_classes** | **str**

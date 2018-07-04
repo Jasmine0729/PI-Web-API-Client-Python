@@ -21,6 +21,7 @@ Name | Type | Notes
 **has_children** | **bool**
 **category_names** | **list[str]**
 **trait_name** | **str**
+**default_units_name_abbreviation** | **str**
 **links** | **[**PIAttributeTemplateLinks**](../models/PIAttributeTemplateLinks.md)**
 **web_exception** | **[**PIWebException**](../models/PIWebException.md)**
 

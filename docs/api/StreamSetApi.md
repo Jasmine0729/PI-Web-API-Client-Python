@@ -24,6 +24,8 @@ Method | HTTP request | Description
 [**get_recorded_at_time_ad_hoc**](StreamSetApi.md#getrecordedattimeadhoc) | **GET** /streamsets/recordedattime | Returns recorded values based on the passed time and retrieval mode.
 [**get_recorded_at_times_ad_hoc**](StreamSetApi.md#getrecordedattimesadhoc) | **GET** /streamsets/recordedattimes | Returns recorded values of the specified streams at the specified times.
 [**get_summaries_ad_hoc**](StreamSetApi.md#getsummariesadhoc) | **GET** /streamsets/summary | Returns summary values of the specified streams.
+[**retrieve_stream_set_updates**](StreamSetApi.md#retrievestreamsetupdates) | **GET** /streamsets/updates | Receive stream updates
+[**register_stream_set_updates**](StreamSetApi.md#registerstreamsetupdates) | **POST** /streamsets/updates | Register for stream updates
 [**get_values_ad_hoc**](StreamSetApi.md#getvaluesadhoc) | **GET** /streamsets/value | Returns values of the specified streams.
 [**update_value_ad_hoc**](StreamSetApi.md#updatevalueadhoc) | **POST** /streamsets/value | Updates a single value for the specified streams.
 
@@ -71,7 +73,7 @@ Name | Type | Description | Notes
  **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
  **show_excluded** | **bool**| Specified if the search should include attributes with the Excluded property set. The default is 'false'.. | [optional]
  **show_hidden** | **bool**| Specified if the search should include attributes with the Hidden property set. The default is 'false'.. | [optional]
- **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, The default is unsorted. 'Name' is the only supported field by which to sort.. | [optional]
+ **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, by default no sorting is applied. 'Name' is the only supported field by which to sort.. | [optional]
  **sort_order** | **str**| The order that the returned collection is sorted. The default is 'Ascending'. | [optional]
  **template_name** | **str**| Specify that included attributes must be members of this template. The default is no template filter.. | [optional]
  **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
@@ -103,8 +105,8 @@ Name | Type | Description | Notes
  **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
  **show_excluded** | **bool**| Specified if the search should include attributes with the Excluded property set. The default is 'false'.. | [optional]
  **show_hidden** | **bool**| Specified if the search should include attributes with the Hidden property set. The default is 'false'.. | [optional]
- **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, The default is unsorted. 'Name' is the only supported field by which to sort.. | [optional]
- **sort_order** | **str**| The order that the returned collection is sorted. The default is 'Ascending'. | [optional]
+ **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, by default no sorting is applied. 'Name' is the only supported field by which to sort.. | [optional]
+ **sort_order** | **str**| The order that the returned collection is sorted. The default is 'Ascending'.. | [optional]
  **start_time** | **str**| An optional start time. The default is '*-1d' for element attributes and points. For event frame attributes, the default is the event frame's start time, or '*-1d' if that is not set.. | [optional]
  **sync_time** | **str**| An optional start time anchor, in AFTime format. When specified, interpolated data retrieval will use the sync time as the origin for calculating the interval times.. | [optional]
  **sync_time_boundary_type** | **str**| An optional string specifying the boundary type to use when applying a syncTime. The allowed values are 'Inside' and 'Outside'. The default is 'Inside'.. | [optional]
@@ -168,7 +170,7 @@ Name | Type | Description | Notes
  **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
  **show_excluded** | **bool**| Specified if the search should include attributes with the Excluded property set. The default is 'false'.. | [optional]
  **show_hidden** | **bool**| Specified if the search should include attributes with the Hidden property set. The default is 'false'.. | [optional]
- **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, The default is unsorted. 'Name' is the only supported field by which to sort.. | [optional]
+ **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, by default no sorting is applied. 'Name' is the only supported field by which to sort.. | [optional]
  **sort_order** | **str**| The order that the returned collection is sorted. The default is 'Ascending'. | [optional]
  **start_time** | **str**| An optional start time. The default is '*-1d' for element attributes and points. For event frame attributes, the default is the event frame's start time, or '*-1d' if that is not set.. | [optional]
  **template_name** | **str**| Specify that included attributes must be members of this template. The default is no template filter.. | [optional]
@@ -203,7 +205,7 @@ Name | Type | Description | Notes
  **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
  **show_excluded** | **bool**| Specified if the search should include attributes with the Excluded property set. The default is 'false'.. | [optional]
  **show_hidden** | **bool**| Specified if the search should include attributes with the Hidden property set. The default is 'false'.. | [optional]
- **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, The default is unsorted. 'Name' is the only supported field by which to sort.. | [optional]
+ **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, by default no sorting is applied. 'Name' is the only supported field by which to sort.. | [optional]
  **sort_order** | **str**| The order that the returned collection is sorted. The default is 'Ascending'. | [optional]
  **start_time** | **str**| An optional start time. The default is '*-1d' for element attributes and points. For event frame attributes, the default is the event frame's start time, or '*-1d' if that is not set.. | [optional]
  **template_name** | **str**| Specify that included attributes must be members of this template. The default is no template filter.. | [optional]
@@ -349,7 +351,7 @@ Name | Type | Description | Notes
  **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
  **show_excluded** | **bool**| Specified if the search should include attributes with the Excluded property set. The default is 'false'.. | [optional]
  **show_hidden** | **bool**| Specified if the search should include attributes with the Hidden property set. The default is 'false'.. | [optional]
- **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, The default is unsorted. 'Name' is the only supported field by which to sort.. | [optional]
+ **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, by default no sorting is applied. 'Name' is the only supported field by which to sort.. | [optional]
  **sort_order** | **str**| The order that the returned collection is sorted. The default is 'Ascending'. | [optional]
  **template_name** | **str**| Specify that included attributes must be members of this template. The default is no template filter.. | [optional]
  **time** | **str**| An AF time string, which is used as the time context to get stream values if it is provided. By default, it is not specified, and the default time context of the AF object will be used.. | [optional]
@@ -416,7 +418,7 @@ Name | Type | Description | Notes
 ------------- | ------------- | ------------- | -------------
  **web_id** | **list[str]**| The ID of a stream. Multiple streams may be specified with multiple instances of the parameter.. | [required]
  **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
- **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, The default is unsorted. 'Name' is the only supported field by which to sort.. | [optional]
+ **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, by default no sorting is applied. 'Name' is the only supported field by which to sort.. | [optional]
  **sort_order** | **str**| The order that the returned collection is sorted. The default is 'Ascending'. | [optional]
  **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
 
@@ -442,7 +444,7 @@ Name | Type | Description | Notes
  **include_filtered_values** | **bool**| Specify 'true' to indicate that values which fail the filter criteria are present in the returned data at the times where they occurred with a value set to a 'Filtered' enumeration value with bad status. Repeated consecutive failures are omitted.. | [optional]
  **interval** | **str**| The sampling interval, in AFTimeSpan format.. | [optional]
  **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
- **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, The default is unsorted. 'Name' is the only supported field by which to sort.. | [optional]
+ **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, by default no sorting is applied. 'Name' is the only supported field by which to sort.. | [optional]
  **sort_order** | **str**| The order that the returned collection is sorted. The default is 'Ascending'. | [optional]
  **start_time** | **str**| An optional start time. The default is '*-1d'.. | [optional]
  **sync_time** | **str**| An optional start time anchor, in AFTime format. When specified, interpolated data retrieval will use the sync time as the origin for calculating the interval times.. | [optional]
@@ -495,7 +497,7 @@ Name | Type | Description | Notes
  **end_time** | **str**| An optional end time. The default is '*'. Note that if endTime is earlier than startTime, the resulting values will be in time-descending order.. | [optional]
  **intervals** | **int**| The number of intervals to plot over. Typically, this would be the number of horizontal pixels in the trend. The default is '24'. For each interval, the data available is examined and significant values are returned. Each interval can produce up to 5 values if they are unique, the first value in the interval, the last value, the highest value, the lowest value and at most one exceptional point (bad status or digital state).. | [optional]
  **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
- **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, The default is unsorted. 'Name' is the only supported field by which to sort.. | [optional]
+ **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, by default no sorting is applied. 'Name' is the only supported field by which to sort.. | [optional]
  **sort_order** | **str**| The order that the returned collection is sorted. The default is 'Ascending'. | [optional]
  **start_time** | **str**| An optional start time. The default is '*-1d'.. | [optional]
  **time_zone** | **str**| The time zone in which the time string will be interpreted. This parameter will be ignored if a time zone is specified in the time string. If no time zone is specified in either places, the PI Web API server time zone will be used.. | [optional]
@@ -524,7 +526,7 @@ Name | Type | Description | Notes
  **include_filtered_values** | **bool**| Specify 'true' to indicate that values which fail the filter criteria are present in the returned data at the times where they occurred with a value set to a 'Filtered' enumeration value with bad status. Repeated consecutive failures are omitted.. | [optional]
  **max_count** | **int**| The maximum number of values to be returned. The default is 1000.. | [optional]
  **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
- **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, The default is unsorted. 'Name' is the only supported field by which to sort.. | [optional]
+ **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, by default no sorting is applied. 'Name' is the only supported field by which to sort.. | [optional]
  **sort_order** | **str**| The order that the returned collection is sorted. The default is 'Ascending'. | [optional]
  **start_time** | **str**| An optional start time. The default is '*-1d'.. | [optional]
  **time_zone** | **str**| The time zone in which the time string will be interpreted. This parameter will be ignored if a time zone is specified in the time string. If no time zone is specified in either places, the PI Web API server time zone will be used.. | [optional]
@@ -634,6 +636,46 @@ Name | Type | Description | Notes
 
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 
+# **retrieve_stream_set_updates**
+> retrieve_stream_set_updates('marker', 'selected_fields', 'web_id_type')
+
+Receive stream updates
+
+### Parameters
+
+Name | Type | Description | Notes
+------------- | ------------- | ------------- | -------------
+ **marker** | **list[str]**| Identifier of stream source and current position. Multiple markers may be specified with multiple instances of the parameter.. | [required]
+ **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
+ **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
+
+
+### Return type
+
+[**PIItemsStreamUpdatesRetrieve**](../models/PIItemsStreamUpdatesRetrieve.md)
+
+[[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
+
+# **register_stream_set_updates**
+> register_stream_set_updates('web_id', 'selected_fields', 'web_id_type')
+
+Register for stream updates
+
+### Parameters
+
+Name | Type | Description | Notes
+------------- | ------------- | ------------- | -------------
+ **web_id** | **list[str]**| The ID of a stream. Multiple streams may be specified with multiple instances of the parameter.. | [required]
+ **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
+ **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
+
+
+### Return type
+
+[**PIItemsStreamUpdatesRegister**](../models/PIItemsStreamUpdatesRegister.md)
+
+[[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
+
 # **get_values_ad_hoc**
 > get_values_ad_hoc('web_id', 'selected_fields', 'sort_field', 'sort_order', 'time', 'time_zone', 'web_id_type')
 
@@ -645,7 +687,7 @@ Name | Type | Description | Notes
 ------------- | ------------- | ------------- | -------------
  **web_id** | **list[str]**| The ID of a stream. Multiple streams may be specified with multiple instances of the parameter.. | [required]
  **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
- **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, The default is unsorted. 'Name' is the only supported field by which to sort.. | [optional]
+ **sort_field** | **str**| The field or property of the object used to sort the returned collection. For better performance, by default no sorting is applied. 'Name' is the only supported field by which to sort.. | [optional]
  **sort_order** | **str**| The order that the returned collection is sorted. The default is 'Ascending'. | [optional]
  **time** | **str**| An AF time string, which is used as the time context to get stream values if it is provided. By default, it is not specified, and the default time context of the AF object will be used.. | [optional]
  **time_zone** | **str**| The time zone in which the time string will be interpreted. This parameter will be ignored if a time zone is specified in the time string. If no time zone is specified in either places, the PI Web API server time zone will be used.. | [optional]

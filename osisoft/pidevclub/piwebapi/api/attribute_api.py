@@ -301,16 +301,16 @@ class AttributeApi(object):
 				collection_formats =collection_formats)
 
 
-	def get_attributes(self, web_id, category_name=None, max_count=None, name_filter=None, search_full_hierarchy=None, selected_fields=None, show_excluded=None, show_hidden=None, sort_field=None, sort_order=None, start_index=None, template_name=None, value_type=None, web_id_type=None, **kwargs):
+	def get_attributes(self, web_id, category_name=None, max_count=None, name_filter=None, search_full_hierarchy=None, selected_fields=None, show_excluded=None, show_hidden=None, sort_field=None, sort_order=None, start_index=None, template_name=None, trait=None, trait_category=None, value_type=None, web_id_type=None, **kwargs):
 		kwargs['_return_http_data_only'] = True
 		if kwargs.get('callback'):
-			return self.get_attributes_with_http_info(web_id, category_name, max_count, name_filter, search_full_hierarchy, selected_fields, show_excluded, show_hidden, sort_field, sort_order, start_index, template_name, value_type, web_id_type, **kwargs)
+			return self.get_attributes_with_http_info(web_id, category_name, max_count, name_filter, search_full_hierarchy, selected_fields, show_excluded, show_hidden, sort_field, sort_order, start_index, template_name, trait, trait_category, value_type, web_id_type, **kwargs)
 		else:
-			(data) = self.get_attributes_with_http_info(web_id, category_name, max_count, name_filter, search_full_hierarchy, selected_fields, show_excluded, show_hidden, sort_field, sort_order, start_index, template_name, value_type, web_id_type, **kwargs)
+			(data) = self.get_attributes_with_http_info(web_id, category_name, max_count, name_filter, search_full_hierarchy, selected_fields, show_excluded, show_hidden, sort_field, sort_order, start_index, template_name, trait, trait_category, value_type, web_id_type, **kwargs)
 			return data
 
-	def get_attributes_with_http_info(self, web_id, category_name=None, max_count=None, name_filter=None, search_full_hierarchy=None, selected_fields=None, show_excluded=None, show_hidden=None, sort_field=None, sort_order=None, start_index=None, template_name=None, value_type=None, web_id_type=None, **kwargs):
-		all_params = ['web_id', 'category_name', 'max_count', 'name_filter', 'search_full_hierarchy', 'selected_fields', 'show_excluded', 'show_hidden', 'sort_field', 'sort_order', 'start_index', 'template_name', 'value_type', 'web_id_type']
+	def get_attributes_with_http_info(self, web_id, category_name=None, max_count=None, name_filter=None, search_full_hierarchy=None, selected_fields=None, show_excluded=None, show_hidden=None, sort_field=None, sort_order=None, start_index=None, template_name=None, trait=None, trait_category=None, value_type=None, web_id_type=None, **kwargs):
+		all_params = ['web_id', 'category_name', 'max_count', 'name_filter', 'search_full_hierarchy', 'selected_fields', 'show_excluded', 'show_hidden', 'sort_field', 'sort_order', 'start_index', 'template_name', 'trait', 'trait_category', 'value_type', 'web_id_type']
 		all_params.append('callback')
 		all_params.append('_return_http_data_only')
 		all_params.append('_preload_content')
@@ -377,6 +377,14 @@ class AttributeApi(object):
 		if 'template_name' in params:
 			if (params['template_name'] is not None):
 				query_params['templateName'] = params['template_name']
+		if 'trait' in params:
+			if (params['trait'] is not None):
+				query_params['trait'] = params['trait']
+				collection_formats['trait'] = 'multi'
+		if 'trait_category' in params:
+			if (params['trait_category'] is not None):
+				query_params['traitCategory'] = params['trait_category']
+				collection_formats['traitCategory'] = 'multi'
 		if 'value_type' in params:
 			if (params['value_type'] is not None):
 				query_params['valueType'] = params['value_type']

@@ -23,6 +23,7 @@ class PISystemStatus(object):
 		'up_time_in_minutes': 'float',
 		'state': 'str',
 		'cache_instances': 'int',
+		'server_time': 'str',
 		'web_exception': 'PIWebException',
 	}
 
@@ -30,13 +31,15 @@ class PISystemStatus(object):
 		'up_time_in_minutes': 'UpTimeInMinutes',
 		'state': 'State',
 		'cache_instances': 'CacheInstances',
+		'server_time': 'ServerTime',
 		'web_exception': 'WebException',
 	}
-	def __init__(self, up_time_in_minutes=None, state=None, cache_instances=None, web_exception=None):
+	def __init__(self, up_time_in_minutes=None, state=None, cache_instances=None, server_time=None, web_exception=None):
 
 		self._up_time_in_minutes = None
 		self._state = None
 		self._cache_instances = None
+		self._server_time = None
 		self._web_exception = None
 
 		if up_time_in_minutes is not None:
@@ -45,6 +48,8 @@ class PISystemStatus(object):
 			self.state = state
 		if cache_instances is not None:
 			self.cache_instances = cache_instances
+		if server_time is not None:
+			self.server_time = server_time
 		if web_exception is not None:
 			self.web_exception = web_exception
 
@@ -71,6 +76,14 @@ class PISystemStatus(object):
 	@cache_instances.setter
 	def cache_instances(self, cache_instances):
 		self._cache_instances = cache_instances
+
+	@property
+	def server_time(self):
+		return self._server_time
+
+	@server_time.setter
+	def server_time(self, server_time):
+		self._server_time = server_time
 
 	@property
 	def web_exception(self):

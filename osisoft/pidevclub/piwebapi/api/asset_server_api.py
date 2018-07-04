@@ -521,6 +521,78 @@ class AssetServerApi(object):
 				collection_formats =collection_formats)
 
 
+	def get_notification_contact_templates(self, web_id, selected_fields=None, web_id_type=None, **kwargs):
+		kwargs['_return_http_data_only'] = True
+		if kwargs.get('callback'):
+			return self.get_notification_contact_templates_with_http_info(web_id, selected_fields, web_id_type, **kwargs)
+		else:
+			(data) = self.get_notification_contact_templates_with_http_info(web_id, selected_fields, web_id_type, **kwargs)
+			return data
+
+	def get_notification_contact_templates_with_http_info(self, web_id, selected_fields=None, web_id_type=None, **kwargs):
+		all_params = ['web_id', 'selected_fields', 'web_id_type']
+		all_params.append('callback')
+		all_params.append('_return_http_data_only')
+		all_params.append('_preload_content')
+		all_params.append('_request_timeout')
+
+		params = locals()
+		for key, val in iteritems(params['kwargs']):
+			if key not in all_params:
+				raise TypeError(
+					"Got an unexpected keyword argument '%s'"
+					" to method get_notification_contact_templates_with_http_info" % key
+				)
+			params[key] = val
+		del params['kwargs']
+
+		if ('web_id' not in params) or (params['web_id'] is None):
+			raise ValueError("Missing the required parameter `web_id` when calling `get_notification_contact_templates_with_http_info`")
+
+		collection_formats = {}
+
+		query_params = {}
+
+		path_params = {}
+
+		header_params = {}
+
+		form_params = []
+		local_var_files = {}
+
+		body_params = None
+		if 'web_id' in params:
+			if (params['web_id'] is not None):
+				path_params['webId'] = params['web_id']
+		if 'selected_fields' in params:
+			if (params['selected_fields'] is not None):
+				query_params['selectedFields'] = params['selected_fields']
+		if 'web_id_type' in params:
+			if (params['web_id_type'] is not None):
+				query_params['webIdType'] = params['web_id_type']
+
+		header_params['Accept'] = self.api_client.\
+			select_header_accept(['application/json', 'text/json', 'text/html', 'application/x-ms-application'])
+
+
+		header_params['Content-Type'] = self.api_client.\
+			select_header_content_type([])
+
+		return self.api_client.call_api('/assetservers/{webId}/notificationcontacttemplates', 'GET',
+				path_params,
+				query_params,
+				header_params,
+				body =body_params,
+				post_params =form_params,
+				files =local_var_files,
+				response_type ='PIItemsNotificationContactTemplate',
+				callback =params.get('callback'),
+				_return_http_data_only =params.get('_return_http_data_only'),
+				_preload_content =params.get('_preload_content', True),
+				_request_timeout=params.get('_request_timeout'),
+				collection_formats =collection_formats)
+
+
 	def get_security(self, web_id, security_item, user_identity, force_refresh=None, selected_fields=None, web_id_type=None, **kwargs):
 		kwargs['_return_http_data_only'] = True
 		if kwargs.get('callback'):

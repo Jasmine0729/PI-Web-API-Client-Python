@@ -26,6 +26,7 @@ class PIDataServer(object):
 		'path': 'str',
 		'is_connected': 'bool',
 		'server_version': 'str',
+		'server_time': 'str',
 		'links': 'PIDataServerLinks',
 		'web_exception': 'PIWebException',
 	}
@@ -37,10 +38,11 @@ class PIDataServer(object):
 		'path': 'Path',
 		'is_connected': 'IsConnected',
 		'server_version': 'ServerVersion',
+		'server_time': 'ServerTime',
 		'links': 'Links',
 		'web_exception': 'WebException',
 	}
-	def __init__(self, web_id=None, id=None, name=None, path=None, is_connected=None, server_version=None, links=None, web_exception=None):
+	def __init__(self, web_id=None, id=None, name=None, path=None, is_connected=None, server_version=None, server_time=None, links=None, web_exception=None):
 
 		self._web_id = None
 		self._id = None
@@ -48,6 +50,7 @@ class PIDataServer(object):
 		self._path = None
 		self._is_connected = None
 		self._server_version = None
+		self._server_time = None
 		self._links = None
 		self._web_exception = None
 
@@ -63,6 +66,8 @@ class PIDataServer(object):
 			self.is_connected = is_connected
 		if server_version is not None:
 			self.server_version = server_version
+		if server_time is not None:
+			self.server_time = server_time
 		if links is not None:
 			self.links = links
 		if web_exception is not None:
@@ -115,6 +120,14 @@ class PIDataServer(object):
 	@server_version.setter
 	def server_version(self, server_version):
 		self._server_version = server_version
+
+	@property
+	def server_time(self):
+		return self._server_time
+
+	@server_time.setter
+	def server_time(self, server_time):
+		self._server_time = server_time
 
 	@property
 	def links(self):

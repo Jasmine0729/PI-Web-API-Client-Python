@@ -25,6 +25,7 @@ class PITimedValue(object):
 		'good': 'bool',
 		'questionable': 'bool',
 		'substituted': 'bool',
+		'annotated': 'bool',
 		'value': 'object',
 		'errors': 'list[PIPropertyError]',
 		'web_exception': 'PIWebException',
@@ -36,17 +37,19 @@ class PITimedValue(object):
 		'good': 'Good',
 		'questionable': 'Questionable',
 		'substituted': 'Substituted',
+		'annotated': 'Annotated',
 		'value': 'Value',
 		'errors': 'Errors',
 		'web_exception': 'WebException',
 	}
-	def __init__(self, timestamp=None, units_abbreviation=None, good=None, questionable=None, substituted=None, value=None, errors=None, web_exception=None):
+	def __init__(self, timestamp=None, units_abbreviation=None, good=None, questionable=None, substituted=None, annotated=None, value=None, errors=None, web_exception=None):
 
 		self._timestamp = None
 		self._units_abbreviation = None
 		self._good = None
 		self._questionable = None
 		self._substituted = None
+		self._annotated = None
 		self._value = None
 		self._errors = None
 		self._web_exception = None
@@ -61,6 +64,8 @@ class PITimedValue(object):
 			self.questionable = questionable
 		if substituted is not None:
 			self.substituted = substituted
+		if annotated is not None:
+			self.annotated = annotated
 		if value is not None:
 			self.value = value
 		if errors is not None:
@@ -107,6 +112,14 @@ class PITimedValue(object):
 	@substituted.setter
 	def substituted(self, substituted):
 		self._substituted = substituted
+
+	@property
+	def annotated(self):
+		return self._annotated
+
+	@annotated.setter
+	def annotated(self, annotated):
+		self._annotated = annotated
 
 	@property
 	def value(self):

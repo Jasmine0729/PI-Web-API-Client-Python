@@ -41,6 +41,10 @@ from osisoft.pidevclub.piwebapi.api.element_template_api import ElementTemplateA
 from osisoft.pidevclub.piwebapi.api.enumeration_set_api import EnumerationSetApi
 from osisoft.pidevclub.piwebapi.api.enumeration_value_api import EnumerationValueApi
 from osisoft.pidevclub.piwebapi.api.event_frame_api import EventFrameApi
+from osisoft.pidevclub.piwebapi.api.notification_contact_template_api import  NotificationContactTemplateApi
+from osisoft.pidevclub.piwebapi.api.notification_rule_api import NotificationRuleApi
+from osisoft.pidevclub.piwebapi.api.notification_rule_subscriber_api import NotificationRuleSubscriberApi
+from osisoft.pidevclub.piwebapi.api.notification_rule_template_api import NotificationRuleTemplateApi
 from osisoft.pidevclub.piwebapi.api.point_api import PointApi
 from osisoft.pidevclub.piwebapi.api.security_identity_api import SecurityIdentityApi
 from osisoft.pidevclub.piwebapi.api.security_mapping_api import SecurityMappingApi
@@ -78,7 +82,7 @@ class PIWebApiClient(object):
         else:
             self.__api_client.set_basic_auth(self.__username, self.__password)
 
-        self.__homeApi = HomeApi(self.__api_client)
+
         self.__analysisApi = AnalysisApi(self.__api_client)
         self.__analysisCategoryApi = AnalysisCategoryApi(self.__api_client)
         self.__analysisRulePlugInApi = AnalysisRulePlugInApi(self.__api_client)
@@ -100,6 +104,11 @@ class PIWebApiClient(object):
         self.__enumerationSetApi = EnumerationSetApi(self.__api_client)
         self.__enumerationValueApi = EnumerationValueApi(self.__api_client)
         self.__eventFrameApi = EventFrameApi(self.__api_client)
+        self.__homeApi = HomeApi(self.__api_client)
+        self.__notificationContactTemplateApi = NotificationContactTemplateApi(self.__api_client)
+        self.__notificationRuleApi = NotificationRuleApi(self.__api_client)
+        self.__notificationRuleSubscriberApi = NotificationRuleSubscriberApi(self.__api_client)
+        self.__notificationRuleTemplateApi = NotificationRuleTemplateApi(self.__api_client)
         self.__pointApi = PointApi(self.__api_client)
         self.__securityIdentityApi = SecurityIdentityApi(self.__api_client)
         self.__securityMappingApi = SecurityMappingApi(self.__api_client)

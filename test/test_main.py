@@ -21,9 +21,10 @@ from threading import Thread
 from time import sleep, time
 
 from osisoft.pidevclub.piwebapi.models import PIAnalysis, PIItemsStreamValues, PIStreamValues, PITimedValue, PIRequest, \
-    PIResponse, PIPoint
+    PIResponse, PIPoint, PIRequestTemplate
 from osisoft.pidevclub.piwebapi.pi_web_api_client import PIWebApiClient
 from osisoft.pidevclub.piwebapi.rest import ApiException
+import time
 
 
 
@@ -53,6 +54,34 @@ class TestMain(unittest.TestCase):
         point2 = client.point.get_by_path("\\\\PISRV1\\cdt158", None, None)
         point3 = client.point.get_by_path("\\\\PISRV1\\sinusoidu", None, None)
 
+        pass
+
+    def test_getStreamSets(self):
+        client = self.getPIWebApiClient()
+        point1 = client.point.get_by_path("\\\\PISRV1\\sinusoid", None, None);
+        point2 = client.point.get_by_path("\\\\PISRV1\\cdt158", None, None);
+        point3 = client.point.get_by_path("\\\\PISRV1\\sinusoidu", None, None);
+
+        webIds = list()
+        webIds.append(point1.web_id);
+        webIds.append(point2.web_id);
+        webIds.append(point3.web_id);
+
+        events = list()
+
+        piItemsStreamUpdatesRegister = client.streamSet.register_stream_set_updates(webIds)
+        markers = [i.latest_marker for i in piItemsStreamUpdatesRegister.items]
+        k = 3
+        while k > 0:
+            piItemsStreamUpdatesRetrieve = client.streamSet.retrieve_stream_set_updates(markers)
+            markers = [i.latest_marker for i in piItemsStreamUpdatesRetrieve.items]
+            for item in piItemsStreamUpdatesRetrieve.items:
+                for event in item.events:
+                    events.append(event)
+            time.sleep(30)
+            k = k-1
+
+        self.assertTrue(events.__len__() > 0)
         pass
 
 
@@ -91,13 +120,13 @@ class TestMain(unittest.TestCase):
 
     def test_getElement(self):
         client = self.getPIWebApiClient()
-        element = client.element.get_by_path("\\\\PISRV1\\City Bikes\\(TO)BIKE")
+        element = client.element.get_by_path("\\\\PISRV1\\Universities\\UC Davis\\Buildings\\Activities and Recreation Center")
         pass
 
 
     def test_getAttribute(self):
         client = self.getPIWebApiClient()
-        attribute = client.attribute.get_by_path("\\\\PISRV1\\City Bikes\\(TO)BIKE\\01. Certosa   P.le Avis|Empty Slots",
+        attribute = client.attribute.get_by_path("\\\\PISRV1\\Universities\\UC Davis\\Buildings\\Activities and Recreation Center|AnnualCost",
                                                  selected_fields="Name")
         pass
 
@@ -116,6 +145,7 @@ class TestMain(unittest.TestCase):
         req1 = PIRequest()
         req2 = PIRequest()
         req3 = PIRequest()
+        req4 = PIRequest()
         req1.method = "GET"
         req1.resource = "https://marc-rras.osisoft.int/piwebapi/points?path=\\\\MARC-PI2016\\sinusoid"
         req2.method = "GET"
@@ -125,10 +155,18 @@ class TestMain(unittest.TestCase):
         req3.parameters = ["$.1.Content.WebId", "$.2.Content.WebId"]
         req3.parent_ids = ["1", "2"]
 
+        req4.method = "GET"
+        request_template = PIRequestTemplate()
+        request_template.resource = "https://marc-rras.osisoft.int/piwebapi/streams/{0}/value"
+        req4.request_template = request_template
+        req4.parameters = ["$.3.Content.Items[*].WebId"]
+        req4.parent_ids = ["3"]
+
         batch = {
             "1": req1,
             "2": req2,
-            "3": req3
+            "3": req3,
+            "4": req4
         }
 
         batchResponse = client.batch.execute(batch)

@@ -1,12 +1,12 @@
-PI Web API client library for Python (2017 R2)
+PI Web API client library for Python (2018)
 ===
 
 ## Overview
-This repository has the source code package of the PI Web API client libraries for Python. This version was developed on top of the PI Web API 2017 R2 swagger specification.
+This repository has the source code package of the PI Web API client libraries for Python. This version was developed on top of the PI Web API 2018 swagger specification.
 
 ## Requirements
 
- - PI Web API 2017 R2 installed within your domain using Kerberos or Basic Authentication. If you are using an older version, some methods might not work.
+ - PI Web API 2018 installed within your domain using Kerberos or Basic Authentication. If you are using an older version, some methods might not work.
  - Python 2.7 and 3.4+
 
 ## Installation
@@ -246,6 +246,25 @@ The path from the methods above should start with "pi:" (if your stream is a PI 
     pi_attribute_web_id_info = client.webIdHelper.get_web_id_info(pi_attribute_web_id)
     pi_element_web_id_info= client.webIdHelper.get_web_id_info(pi_element_web_id)
     pi_dataServer_web_id_info = client.webIdHelper.get_web_id_info(pi_data_server_web_id)
+	
+### StreamUpdates
+
+
+```python
+    events = list()
+    piItemsStreamUpdatesRegister = client.streamSet.register_stream_set_updates(webIds)
+    markers = [i.latest_marker for i in piItemsStreamUpdatesRegister.items]
+    k = 3
+    while k > 0:
+		piItemsStreamUpdatesRetrieve = client.streamSet.retrieve_stream_set_updates(markers)
+		markers = [i.latest_marker for i in piItemsStreamUpdatesRetrieve.items]
+		for item in piItemsStreamUpdatesRetrieve.items:
+			for event in item.events:
+				events.append(event)
+		time.sleep(30)
+		k = k-1
+    self.assertTrue(events.__len__() > 0)
+	
 
 
 

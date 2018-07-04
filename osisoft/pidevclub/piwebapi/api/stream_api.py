@@ -436,16 +436,16 @@ class StreamApi(object):
 				collection_formats =collection_formats)
 
 
-	def get_recorded(self, web_id, boundary_type=None, desired_units=None, end_time=None, filter_expression=None, include_filtered_values=None, max_count=None, selected_fields=None, start_time=None, time_zone=None, **kwargs):
+	def get_recorded(self, web_id, associations=None, boundary_type=None, desired_units=None, end_time=None, filter_expression=None, include_filtered_values=None, max_count=None, selected_fields=None, start_time=None, time_zone=None, **kwargs):
 		kwargs['_return_http_data_only'] = True
 		if kwargs.get('callback'):
-			return self.get_recorded_with_http_info(web_id, boundary_type, desired_units, end_time, filter_expression, include_filtered_values, max_count, selected_fields, start_time, time_zone, **kwargs)
+			return self.get_recorded_with_http_info(web_id, associations, boundary_type, desired_units, end_time, filter_expression, include_filtered_values, max_count, selected_fields, start_time, time_zone, **kwargs)
 		else:
-			(data) = self.get_recorded_with_http_info(web_id, boundary_type, desired_units, end_time, filter_expression, include_filtered_values, max_count, selected_fields, start_time, time_zone, **kwargs)
+			(data) = self.get_recorded_with_http_info(web_id, associations, boundary_type, desired_units, end_time, filter_expression, include_filtered_values, max_count, selected_fields, start_time, time_zone, **kwargs)
 			return data
 
-	def get_recorded_with_http_info(self, web_id, boundary_type=None, desired_units=None, end_time=None, filter_expression=None, include_filtered_values=None, max_count=None, selected_fields=None, start_time=None, time_zone=None, **kwargs):
-		all_params = ['web_id', 'boundary_type', 'desired_units', 'end_time', 'filter_expression', 'include_filtered_values', 'max_count', 'selected_fields', 'start_time', 'time_zone']
+	def get_recorded_with_http_info(self, web_id, associations=None, boundary_type=None, desired_units=None, end_time=None, filter_expression=None, include_filtered_values=None, max_count=None, selected_fields=None, start_time=None, time_zone=None, **kwargs):
+		all_params = ['web_id', 'associations', 'boundary_type', 'desired_units', 'end_time', 'filter_expression', 'include_filtered_values', 'max_count', 'selected_fields', 'start_time', 'time_zone']
 		all_params.append('callback')
 		all_params.append('_return_http_data_only')
 		all_params.append('_preload_content')
@@ -479,6 +479,9 @@ class StreamApi(object):
 		if 'web_id' in params:
 			if (params['web_id'] is not None):
 				path_params['webId'] = params['web_id']
+		if 'associations' in params:
+			if (params['associations'] is not None):
+				query_params['associations'] = params['associations']
 		if 'boundary_type' in params:
 			if (params['boundary_type'] is not None):
 				query_params['boundaryType'] = params['boundary_type']
@@ -521,7 +524,7 @@ class StreamApi(object):
 				body =body_params,
 				post_params =form_params,
 				files =local_var_files,
-				response_type ='PITimedValues',
+				response_type ='PIExtendedTimedValues',
 				callback =params.get('callback'),
 				_return_http_data_only =params.get('_return_http_data_only'),
 				_preload_content =params.get('_preload_content', True),
@@ -605,16 +608,16 @@ class StreamApi(object):
 				collection_formats =collection_formats)
 
 
-	def get_recorded_at_time(self, web_id, time, desired_units=None, retrieval_mode=None, selected_fields=None, time_zone=None, **kwargs):
+	def get_recorded_at_time(self, web_id, time, associations=None, desired_units=None, retrieval_mode=None, selected_fields=None, time_zone=None, **kwargs):
 		kwargs['_return_http_data_only'] = True
 		if kwargs.get('callback'):
-			return self.get_recorded_at_time_with_http_info(web_id, time, desired_units, retrieval_mode, selected_fields, time_zone, **kwargs)
+			return self.get_recorded_at_time_with_http_info(web_id, time, associations, desired_units, retrieval_mode, selected_fields, time_zone, **kwargs)
 		else:
-			(data) = self.get_recorded_at_time_with_http_info(web_id, time, desired_units, retrieval_mode, selected_fields, time_zone, **kwargs)
+			(data) = self.get_recorded_at_time_with_http_info(web_id, time, associations, desired_units, retrieval_mode, selected_fields, time_zone, **kwargs)
 			return data
 
-	def get_recorded_at_time_with_http_info(self, web_id, time, desired_units=None, retrieval_mode=None, selected_fields=None, time_zone=None, **kwargs):
-		all_params = ['web_id', 'time', 'desired_units', 'retrieval_mode', 'selected_fields', 'time_zone']
+	def get_recorded_at_time_with_http_info(self, web_id, time, associations=None, desired_units=None, retrieval_mode=None, selected_fields=None, time_zone=None, **kwargs):
+		all_params = ['web_id', 'time', 'associations', 'desired_units', 'retrieval_mode', 'selected_fields', 'time_zone']
 		all_params.append('callback')
 		all_params.append('_return_http_data_only')
 		all_params.append('_preload_content')
@@ -653,6 +656,9 @@ class StreamApi(object):
 		if 'time' in params:
 			if (params['time'] is not None):
 				query_params['time'] = params['time']
+		if 'associations' in params:
+			if (params['associations'] is not None):
+				query_params['associations'] = params['associations']
 		if 'desired_units' in params:
 			if (params['desired_units'] is not None):
 				query_params['desiredUnits'] = params['desired_units']
@@ -680,7 +686,7 @@ class StreamApi(object):
 				body =body_params,
 				post_params =form_params,
 				files =local_var_files,
-				response_type ='PITimedValue',
+				response_type ='PIExtendedTimedValue',
 				callback =params.get('callback'),
 				_return_http_data_only =params.get('_return_http_data_only'),
 				_preload_content =params.get('_preload_content', True),
@@ -688,16 +694,16 @@ class StreamApi(object):
 				collection_formats =collection_formats)
 
 
-	def get_recorded_at_times(self, web_id, desired_units=None, retrieval_mode=None, selected_fields=None, sort_order=None, time=None, time_zone=None, **kwargs):
+	def get_recorded_at_times(self, web_id, associations=None, desired_units=None, retrieval_mode=None, selected_fields=None, sort_order=None, time=None, time_zone=None, **kwargs):
 		kwargs['_return_http_data_only'] = True
 		if kwargs.get('callback'):
-			return self.get_recorded_at_times_with_http_info(web_id, desired_units, retrieval_mode, selected_fields, sort_order, time, time_zone, **kwargs)
+			return self.get_recorded_at_times_with_http_info(web_id, associations, desired_units, retrieval_mode, selected_fields, sort_order, time, time_zone, **kwargs)
 		else:
-			(data) = self.get_recorded_at_times_with_http_info(web_id, desired_units, retrieval_mode, selected_fields, sort_order, time, time_zone, **kwargs)
+			(data) = self.get_recorded_at_times_with_http_info(web_id, associations, desired_units, retrieval_mode, selected_fields, sort_order, time, time_zone, **kwargs)
 			return data
 
-	def get_recorded_at_times_with_http_info(self, web_id, desired_units=None, retrieval_mode=None, selected_fields=None, sort_order=None, time=None, time_zone=None, **kwargs):
-		all_params = ['web_id', 'desired_units', 'retrieval_mode', 'selected_fields', 'sort_order', 'time', 'time_zone']
+	def get_recorded_at_times_with_http_info(self, web_id, associations=None, desired_units=None, retrieval_mode=None, selected_fields=None, sort_order=None, time=None, time_zone=None, **kwargs):
+		all_params = ['web_id', 'associations', 'desired_units', 'retrieval_mode', 'selected_fields', 'sort_order', 'time', 'time_zone']
 		all_params.append('callback')
 		all_params.append('_return_http_data_only')
 		all_params.append('_preload_content')
@@ -731,6 +737,9 @@ class StreamApi(object):
 		if 'web_id' in params:
 			if (params['web_id'] is not None):
 				path_params['webId'] = params['web_id']
+		if 'associations' in params:
+			if (params['associations'] is not None):
+				query_params['associations'] = params['associations']
 		if 'desired_units' in params:
 			if (params['desired_units'] is not None):
 				query_params['desiredUnits'] = params['desired_units']
@@ -765,7 +774,7 @@ class StreamApi(object):
 				body =body_params,
 				post_params =form_params,
 				files =local_var_files,
-				response_type ='PITimedValues',
+				response_type ='PIExtendedTimedValues',
 				callback =params.get('callback'),
 				_return_http_data_only =params.get('_return_http_data_only'),
 				_preload_content =params.get('_preload_content', True),
@@ -866,6 +875,78 @@ class StreamApi(object):
 				post_params =form_params,
 				files =local_var_files,
 				response_type ='PIItemsSummaryValue',
+				callback =params.get('callback'),
+				_return_http_data_only =params.get('_return_http_data_only'),
+				_preload_content =params.get('_preload_content', True),
+				_request_timeout=params.get('_request_timeout'),
+				collection_formats =collection_formats)
+
+
+	def register_stream_update(self, web_id, selected_fields=None, web_id_type=None, **kwargs):
+		kwargs['_return_http_data_only'] = True
+		if kwargs.get('callback'):
+			return self.register_stream_update_with_http_info(web_id, selected_fields, web_id_type, **kwargs)
+		else:
+			(data) = self.register_stream_update_with_http_info(web_id, selected_fields, web_id_type, **kwargs)
+			return data
+
+	def register_stream_update_with_http_info(self, web_id, selected_fields=None, web_id_type=None, **kwargs):
+		all_params = ['web_id', 'selected_fields', 'web_id_type']
+		all_params.append('callback')
+		all_params.append('_return_http_data_only')
+		all_params.append('_preload_content')
+		all_params.append('_request_timeout')
+
+		params = locals()
+		for key, val in iteritems(params['kwargs']):
+			if key not in all_params:
+				raise TypeError(
+					"Got an unexpected keyword argument '%s'"
+					" to method register_stream_update_with_http_info" % key
+				)
+			params[key] = val
+		del params['kwargs']
+
+		if ('web_id' not in params) or (params['web_id'] is None):
+			raise ValueError("Missing the required parameter `web_id` when calling `register_stream_update_with_http_info`")
+
+		collection_formats = {}
+
+		query_params = {}
+
+		path_params = {}
+
+		header_params = {}
+
+		form_params = []
+		local_var_files = {}
+
+		body_params = None
+		if 'web_id' in params:
+			if (params['web_id'] is not None):
+				path_params['webId'] = params['web_id']
+		if 'selected_fields' in params:
+			if (params['selected_fields'] is not None):
+				query_params['selectedFields'] = params['selected_fields']
+		if 'web_id_type' in params:
+			if (params['web_id_type'] is not None):
+				query_params['webIdType'] = params['web_id_type']
+
+		header_params['Accept'] = self.api_client.\
+			select_header_accept(['application/json', 'text/json', 'text/html', 'application/x-ms-application'])
+
+
+		header_params['Content-Type'] = self.api_client.\
+			select_header_content_type([])
+
+		return self.api_client.call_api('/streams/{webId}/updates', 'POST',
+				path_params,
+				query_params,
+				header_params,
+				body =body_params,
+				post_params =form_params,
+				files =local_var_files,
+				response_type ='PIStreamUpdatesRegister',
 				callback =params.get('callback'),
 				_return_http_data_only =params.get('_return_http_data_only'),
 				_preload_content =params.get('_preload_content', True),
@@ -1023,6 +1104,81 @@ class StreamApi(object):
 				post_params =form_params,
 				files =local_var_files,
 				response_type =None,
+				callback =params.get('callback'),
+				_return_http_data_only =params.get('_return_http_data_only'),
+				_preload_content =params.get('_preload_content', True),
+				_request_timeout=params.get('_request_timeout'),
+				collection_formats =collection_formats)
+
+
+	def retrieve_stream_update(self, marker, desired_units=None, selected_fields=None, web_id_type=None, **kwargs):
+		kwargs['_return_http_data_only'] = True
+		if kwargs.get('callback'):
+			return self.retrieve_stream_update_with_http_info(marker, desired_units, selected_fields, web_id_type, **kwargs)
+		else:
+			(data) = self.retrieve_stream_update_with_http_info(marker, desired_units, selected_fields, web_id_type, **kwargs)
+			return data
+
+	def retrieve_stream_update_with_http_info(self, marker, desired_units=None, selected_fields=None, web_id_type=None, **kwargs):
+		all_params = ['marker', 'desired_units', 'selected_fields', 'web_id_type']
+		all_params.append('callback')
+		all_params.append('_return_http_data_only')
+		all_params.append('_preload_content')
+		all_params.append('_request_timeout')
+
+		params = locals()
+		for key, val in iteritems(params['kwargs']):
+			if key not in all_params:
+				raise TypeError(
+					"Got an unexpected keyword argument '%s'"
+					" to method retrieve_stream_update_with_http_info" % key
+				)
+			params[key] = val
+		del params['kwargs']
+
+		if ('marker' not in params) or (params['marker'] is None):
+			raise ValueError("Missing the required parameter `marker` when calling `retrieve_stream_update_with_http_info`")
+
+		collection_formats = {}
+
+		query_params = {}
+
+		path_params = {}
+
+		header_params = {}
+
+		form_params = []
+		local_var_files = {}
+
+		body_params = None
+		if 'marker' in params:
+			if (params['marker'] is not None):
+				path_params['marker'] = params['marker']
+		if 'desired_units' in params:
+			if (params['desired_units'] is not None):
+				query_params['desiredUnits'] = params['desired_units']
+		if 'selected_fields' in params:
+			if (params['selected_fields'] is not None):
+				query_params['selectedFields'] = params['selected_fields']
+		if 'web_id_type' in params:
+			if (params['web_id_type'] is not None):
+				query_params['webIdType'] = params['web_id_type']
+
+		header_params['Accept'] = self.api_client.\
+			select_header_accept(['application/json', 'text/json', 'text/html', 'application/x-ms-application'])
+
+
+		header_params['Content-Type'] = self.api_client.\
+			select_header_content_type([])
+
+		return self.api_client.call_api('/streams/updates/{marker}', 'GET',
+				path_params,
+				query_params,
+				header_params,
+				body =body_params,
+				post_params =form_params,
+				files =local_var_files,
+				response_type ='PIStreamUpdatesRetrieve',
 				callback =params.get('callback'),
 				_return_http_data_only =params.get('_return_http_data_only'),
 				_preload_content =params.get('_preload_content', True),

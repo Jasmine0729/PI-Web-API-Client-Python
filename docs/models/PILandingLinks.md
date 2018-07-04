@@ -6,6 +6,7 @@ Name | Type | Notes
 **self** | **str**
 **asset_servers** | **str**
 **data_servers** | **str**
+**p_i_directory** | **str**
 **search** | **str**
 **system** | **str**
 

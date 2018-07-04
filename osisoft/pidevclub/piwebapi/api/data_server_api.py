@@ -449,7 +449,7 @@ class DataServerApi(object):
 				collection_formats =collection_formats)
 
 
-	def get_license(self, web_id, module, selected_fields=None, web_id_type=None, **kwargs):
+	def get_license(self, web_id, module=None, selected_fields=None, web_id_type=None, **kwargs):
 		kwargs['_return_http_data_only'] = True
 		if kwargs.get('callback'):
 			return self.get_license_with_http_info(web_id, module, selected_fields, web_id_type, **kwargs)
@@ -457,7 +457,7 @@ class DataServerApi(object):
 			(data) = self.get_license_with_http_info(web_id, module, selected_fields, web_id_type, **kwargs)
 			return data
 
-	def get_license_with_http_info(self, web_id, module, selected_fields=None, web_id_type=None, **kwargs):
+	def get_license_with_http_info(self, web_id, module=None, selected_fields=None, web_id_type=None, **kwargs):
 		all_params = ['web_id', 'module', 'selected_fields', 'web_id_type']
 		all_params.append('callback')
 		all_params.append('_return_http_data_only')
@@ -476,8 +476,6 @@ class DataServerApi(object):
 
 		if ('web_id' not in params) or (params['web_id'] is None):
 			raise ValueError("Missing the required parameter `web_id` when calling `get_license_with_http_info`")
-		if ('module' not in params) or (params['module'] is None):
-			raise ValueError("Missing the required parameter `module` when calling `get_license_with_http_info`")
 
 		collection_formats = {}
 

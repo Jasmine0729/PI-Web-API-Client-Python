@@ -37,6 +37,7 @@ class PIElementLinks(object):
 		'end_value': 'str',
 		'security': 'str',
 		'security_entries': 'str',
+		'notification_rules': 'str',
 	}
 
 	attribute_map = {
@@ -57,8 +58,9 @@ class PIElementLinks(object):
 		'end_value': 'EndValue',
 		'security': 'Security',
 		'security_entries': 'SecurityEntries',
+		'notification_rules': 'NotificationRules',
 	}
-	def __init__(self, analyses=None, attributes=None, elements=None, database=None, parent=None, template=None, categories=None, default_attribute=None, event_frames=None, interpolated_data=None, recorded_data=None, plot_data=None, summary_data=None, value=None, end_value=None, security=None, security_entries=None):
+	def __init__(self, analyses=None, attributes=None, elements=None, database=None, parent=None, template=None, categories=None, default_attribute=None, event_frames=None, interpolated_data=None, recorded_data=None, plot_data=None, summary_data=None, value=None, end_value=None, security=None, security_entries=None, notification_rules=None):
 
 		self._analyses = None
 		self._attributes = None
@@ -77,6 +79,7 @@ class PIElementLinks(object):
 		self._end_value = None
 		self._security = None
 		self._security_entries = None
+		self._notification_rules = None
 
 		if analyses is not None:
 			self.analyses = analyses
@@ -112,6 +115,8 @@ class PIElementLinks(object):
 			self.security = security
 		if security_entries is not None:
 			self.security_entries = security_entries
+		if notification_rules is not None:
+			self.notification_rules = notification_rules
 
 	@property
 	def analyses(self):
@@ -248,6 +253,14 @@ class PIElementLinks(object):
 	@security_entries.setter
 	def security_entries(self, security_entries):
 		self._security_entries = security_entries
+
+	@property
+	def notification_rules(self):
+		return self._notification_rules
+
+	@notification_rules.setter
+	def notification_rules(self, notification_rules):
+		self._notification_rules = notification_rules
 
 	def to_dict(self):
 		result = {}

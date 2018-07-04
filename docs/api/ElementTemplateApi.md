@@ -9,7 +9,10 @@ Method | HTTP request | Description
 [**get_analysis_templates**](ElementTemplateApi.md#getanalysistemplates) | **GET** /elementtemplates/{webId}/analysistemplates | Get analysis templates for an element template.
 [**get_attribute_templates**](ElementTemplateApi.md#getattributetemplates) | **GET** /elementtemplates/{webId}/attributetemplates | Get child attribute templates for an element template.
 [**create_attribute_template**](ElementTemplateApi.md#createattributetemplate) | **POST** /elementtemplates/{webId}/attributetemplates | Create an attribute template.
+[**get_base_element_templates**](ElementTemplateApi.md#getbaseelementtemplates) | **GET** /elementtemplates/{webId}/baseelementtemplates | Get base element templates for an element template.
 [**get_categories**](ElementTemplateApi.md#getcategories) | **GET** /elementtemplates/{webId}/categories | Get an element template's categories.
+[**get_derived_element_templates**](ElementTemplateApi.md#getderivedelementtemplates) | **GET** /elementtemplates/{webId}/derivedelementtemplates | Get derived element templates for an element template.
+[**get_notification_rule_templates**](ElementTemplateApi.md#getnotificationruletemplates) | **GET** /elementtemplates/{webId}/notificationruletemplates | Get notification rule templates for an element template
 [**get_security**](ElementTemplateApi.md#getsecurity) | **GET** /elementtemplates/{webId}/security | Get the security information of the specified security item associated with the element template for a specified user.
 [**get_security_entries**](ElementTemplateApi.md#getsecurityentries) | **GET** /elementtemplates/{webId}/securityentries | Retrieve the security entries associated with the element template based on the specified criteria. By default, all security entries for this element template are returned.
 [**create_security_entry**](ElementTemplateApi.md#createsecurityentry) | **POST** /elementtemplates/{webId}/securityentries | Create a security entry owned by the element template.
@@ -116,7 +119,7 @@ Name | Type | Description | Notes
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 
 # **get_attribute_templates**
-> get_attribute_templates('web_id', 'selected_fields', 'show_inherited', 'web_id_type')
+> get_attribute_templates('web_id', 'depth_first_traverse', 'max_count', 'selected_fields', 'show_descendants', 'show_inherited', 'start_index', 'web_id_type')
 
 Get child attribute templates for an element template.
 
@@ -125,8 +128,12 @@ Get child attribute templates for an element template.
 Name | Type | Description | Notes
 ------------- | ------------- | ------------- | -------------
  **web_id** | **str**| The ID of the element template.. | [required]
+ **depth_first_traverse** | **bool**| When 'true', a Depth First traversal will be performed; this starts at the root and explores as far as possible along each branch before backtracking. When 'false', a Breadth First traversal will be performed; this starts at the tree root and explores the neighbor nodes first, then moves onto the next level of neighbors. The default is 'false' (Breadth First).. | [optional]
+ **max_count** | **int**| The maximum number of objects to be returned. The default is 1000.. | [optional]
  **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
+ **show_descendants** | **bool**| Specifies if the result should include all descendant attribute templates from the current element template, even indirect ones. The default is 'false'.. | [optional]
  **show_inherited** | **bool**| Specifies if the result should include attribute templates inherited from base element templates. The default is 'false'.. | [optional]
+ **start_index** | **int**| The starting index (zero based) of the items to be returned. The default is 0.. | [optional]
  **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
 
 
@@ -156,6 +163,27 @@ None
 
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 
+# **get_base_element_templates**
+> get_base_element_templates('web_id', 'max_count', 'selected_fields', 'web_id_type')
+
+Get base element templates for an element template.
+
+### Parameters
+
+Name | Type | Description | Notes
+------------- | ------------- | ------------- | -------------
+ **web_id** | **str**| The ID of the element template.. | [required]
+ **max_count** | **int**| The maximum number of objects to be returned. The default is 1000.. | [optional]
+ **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
+ **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
+
+
+### Return type
+
+[**PIItemsElementTemplate**](../models/PIItemsElementTemplate.md)
+
+[[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
+
 # **get_categories**
 > get_categories('web_id', 'selected_fields', 'show_inherited', 'web_id_type')
 
@@ -174,6 +202,48 @@ Name | Type | Description | Notes
 ### Return type
 
 [**PIItemsElementCategory**](../models/PIItemsElementCategory.md)
+
+[[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
+
+# **get_derived_element_templates**
+> get_derived_element_templates('web_id', 'max_count', 'selected_fields', 'show_descendants', 'web_id_type')
+
+Get derived element templates for an element template.
+
+### Parameters
+
+Name | Type | Description | Notes
+------------- | ------------- | ------------- | -------------
+ **web_id** | **str**| The ID of the element template.. | [required]
+ **max_count** | **int**| The maximum number of objects to be returned. The default is 1000.. | [optional]
+ **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
+ **show_descendants** | **bool**| Specifies if the result should include all descendant element templates from the current element template, even indirect ones. The default is 'false'.. | [optional]
+ **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
+
+
+### Return type
+
+[**PIItemsElementTemplate**](../models/PIItemsElementTemplate.md)
+
+[[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
+
+# **get_notification_rule_templates**
+> get_notification_rule_templates('web_id', 'selected_fields', 'web_id_type')
+
+Get notification rule templates for an element template
+
+### Parameters
+
+Name | Type | Description | Notes
+------------- | ------------- | ------------- | -------------
+ **web_id** | **str**| The ID of the element template.. | [required]
+ **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
+ **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
+
+
+### Return type
+
+[**PIItemsNotificationRuleTemplate**](../models/PIItemsNotificationRuleTemplate.md)
 
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 

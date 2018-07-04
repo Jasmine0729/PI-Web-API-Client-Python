@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-	Copyright 2017 OSIsoft, LLC
+	Copyright 2018 OSIsoft, LLC
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
@@ -18,7 +18,7 @@
 from setuptools import setup, find_packages
 
 NAME = "osisoft.pidevclub.piwebapi"
-VERSION = "1.1.4"
+VERSION = "1.11.0"
 # To install the library, run the following
 #
 # python setup.py install
@@ -31,7 +31,7 @@ REQUIRES = ["six >= 1.10", "requests", "requests-kerberos", "pandas>=0.20.3", "s
 setup(
     name=NAME,
     version=VERSION,
-    description="PI Web API client library for Python (2017 R2)",
+    description="PI Web API client library for Python (2018)",
     url="https://github.com/osimloeff/PI-Web-API-Client-Python",
     keywords=["PI Web API"],
     install_requires=REQUIRES,
@@ -44,6 +44,6 @@ setup(
         'Development Status :: 5 - Production/Stable'
     ],
     long_description="""\
-    PI Web API client library for Python (2017 R2)
+    PI Web API client library for Python (2018)
     """
 )

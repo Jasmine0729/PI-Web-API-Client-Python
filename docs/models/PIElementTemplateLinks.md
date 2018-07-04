@@ -9,7 +9,10 @@ Name | Type | Notes
 **database** | **str**
 **categories** | **str**
 **base_template** | **str**
+**base_templates** | **str**
+**derived_templates** | **str**
 **default_attribute** | **str**
+**notification_rule_templates** | **str**
 **security** | **str**
 **security_entries** | **str**
 

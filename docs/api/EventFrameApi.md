@@ -11,7 +11,9 @@ Method | HTTP request | Description
 [**create_annotation**](EventFrameApi.md#createannotation) | **POST** /eventframes/{webId}/annotations | Create an annotation on an event frame.
 [**get_annotation_by_id**](EventFrameApi.md#getannotationbyid) | **GET** /eventframes/{webId}/annotations/{id} | Get a specific annotation on an event frame.
 [**update_annotation**](EventFrameApi.md#updateannotation) | **PATCH** /eventframes/{webId}/annotations/{id} | Update an annotation on an event frame by replacing items in its definition.
-[**delete_annotation**](EventFrameApi.md#deleteannotation) | **DELETE** /eventframes/{webId}/annotations/{id} | Delete an annotation on an event frame.
+[**delete_annotation**](EventFrameApi.md#deleteannotation) | **DELETE** /eventframes/{webId}/annotations/{id} | Delete an annotation on an event frame. If the annotation has attached media, the attached media will also be deleted.
+[**delete_annotation_attachment_media_by_id**](EventFrameApi.md#deleteannotationattachmentmediabyid) | **DELETE** /eventframes/{webId}/annotations/{id}/attachment/media | Delete attached media from an annotation on an event frame.
+[**get_annotation_attachment_media_metadata_by_id**](EventFrameApi.md#getannotationattachmentmediametadatabyid) | **GET** /eventframes/{webId}/annotations/{id}/attachment/media/metadata | Gets the metadata of the media attached to the specified annotation.
 [**get_attributes**](EventFrameApi.md#getattributes) | **GET** /eventframes/{webId}/attributes | Get the attributes of the specified event frame.
 [**create_attribute**](EventFrameApi.md#createattribute) | **POST** /eventframes/{webId}/attributes | Create a new attribute of the specified event frame.
 [**capture_values**](EventFrameApi.md#capturevalues) | **POST** /eventframes/{webId}/attributes/capture | Calls the EventFrame's CaptureValues method.
@@ -212,7 +214,7 @@ None
 # **delete_annotation**
 > delete_annotation('id', 'web_id')
 
-Delete an annotation on an event frame.
+Delete an annotation on an event frame. If the annotation has attached media, the attached media will also be deleted.
 
 ### Parameters
 
@@ -228,8 +230,48 @@ None
 
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 
+# **delete_annotation_attachment_media_by_id**
+> delete_annotation_attachment_media_by_id('id', 'web_id')
+
+Delete attached media from an annotation on an event frame.
+
+### Parameters
+
+Name | Type | Description | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The Annotation identifier of the annotation to delete the attached media of.. | [required]
+ **web_id** | **str**| The ID of the owner event frame of the annotation to delete the attached media of.. | [required]
+
+
+### Return type
+
+None
+
+[[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
+
+# **get_annotation_attachment_media_metadata_by_id**
+> get_annotation_attachment_media_metadata_by_id('id', 'web_id', 'selected_fields', 'web_id_type')
+
+Gets the metadata of the media attached to the specified annotation.
+
+### Parameters
+
+Name | Type | Description | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The Annotation identifier of the specific annotation.. | [required]
+ **web_id** | **str**| The ID of the owner event frame.. | [required]
+ **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
+ **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
+
+
+### Return type
+
+[**PIMediaMetadata**](../models/PIMediaMetadata.md)
+
+[[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
+
 # **get_attributes**
-> get_attributes('web_id', 'category_name', 'max_count', 'name_filter', 'search_full_hierarchy', 'selected_fields', 'show_excluded', 'show_hidden', 'sort_field', 'sort_order', 'start_index', 'template_name', 'value_type', 'web_id_type')
+> get_attributes('web_id', 'category_name', 'max_count', 'name_filter', 'search_full_hierarchy', 'selected_fields', 'show_excluded', 'show_hidden', 'sort_field', 'sort_order', 'start_index', 'template_name', 'trait', 'trait_category', 'value_type', 'web_id_type')
 
 Get the attributes of the specified event frame.
 
@@ -249,6 +291,8 @@ Name | Type | Description | Notes
  **sort_order** | **str**| The order that the returned collection is sorted. The default is 'Ascending'.. | [optional]
  **start_index** | **int**| The starting index (zero based) of the items to be returned. The default is 0.. | [optional]
  **template_name** | **str**| Specify that returned attributes must be members of this template. The default is no template filter.. | [optional]
+ **trait** | **list[str]**| The name of the attribute trait. Multiple traits may be specified with multiple instances of the parameter.. | [optional]
+ **trait_category** | **list[str]**| The category of the attribute traits. Multiple categories may be specified with multiple instances of the parameter. If the parameter is not specified, or if its value is "all", then all attribute traits of all categories will be returned.. | [optional]
  **value_type** | **str**| Specify that returned attributes' value type must be the given value type. The default is no value type filter.. | [optional]
  **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
 

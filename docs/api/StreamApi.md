@@ -12,8 +12,10 @@ Method | HTTP request | Description
 [**get_recorded_at_time**](StreamApi.md#getrecordedattime) | **GET** /streams/{webId}/recordedattime | Returns a single recorded value based on the passed time and retrieval mode from the stream.
 [**get_recorded_at_times**](StreamApi.md#getrecordedattimes) | **GET** /streams/{webId}/recordedattimes | Retrieves recorded values at the specified times.
 [**get_summary**](StreamApi.md#getsummary) | **GET** /streams/{webId}/summary | Returns a summary over the specified time range for the stream.
+[**register_stream_update**](StreamApi.md#registerstreamupdate) | **POST** /streams/{webId}/updates | Register for stream updates
 [**get_value**](StreamApi.md#getvalue) | **GET** /streams/{webId}/value | Returns the value of the stream at the specified time. By default, this is usually the current value.
 [**update_value**](StreamApi.md#updatevalue) | **POST** /streams/{webId}/value | Updates a value for the specified stream.
+[**retrieve_stream_update**](StreamApi.md#retrievestreamupdate) | **GET** /streams/updates/{marker} | Receive stream updates
 
 
 # **get_channel**
@@ -135,7 +137,7 @@ Name | Type | Description | Notes
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 
 # **get_recorded**
-> get_recorded('web_id', 'boundary_type', 'desired_units', 'end_time', 'filter_expression', 'include_filtered_values', 'max_count', 'selected_fields', 'start_time', 'time_zone')
+> get_recorded('web_id', 'associations', 'boundary_type', 'desired_units', 'end_time', 'filter_expression', 'include_filtered_values', 'max_count', 'selected_fields', 'start_time', 'time_zone')
 
 Returns a list of compressed values for the requested time range from the source provider.
 
@@ -144,6 +146,7 @@ Returns a list of compressed values for the requested time range from the source
 Name | Type | Description | Notes
 ------------- | ------------- | ------------- | -------------
  **web_id** | **str**| The ID of the stream.. | [required]
+ **associations** | **str**| Associated values to return in the response, separated by semicolons (;). This call supports Annotations to return events with annotation values. If this parameter is not specified, annotation values are not returned.. | [optional]
  **boundary_type** | **str**| An optional value that determines how the times and values of the returned end points are determined. The default is 'Inside'.. | [optional]
  **desired_units** | **str**| The name or abbreviation of the desired units of measure for the returned value, as found in the UOM database associated with the attribute. If not specified for an attribute, the attribute's default unit of measure is used. If the underlying stream is a point, this value may not be specified, as points are not associated with a unit of measure.. | [optional]
  **end_time** | **str**| An optional end time. The default is '*' for element attributes and points. For event frame attributes, the default is the event frame's end time, or '*' if that is not set. Note that if endTime is earlier than startTime, the resulting values will be in time-descending order.. | [optional]
@@ -157,7 +160,7 @@ Name | Type | Description | Notes
 
 ### Return type
 
-[**PITimedValues**](../models/PITimedValues.md)
+[**PIExtendedTimedValues**](../models/PIExtendedTimedValues.md)
 
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 
@@ -183,7 +186,7 @@ Name | Type | Description | Notes
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 
 # **get_recorded_at_time**
-> get_recorded_at_time('web_id', 'time', 'desired_units', 'retrieval_mode', 'selected_fields', 'time_zone')
+> get_recorded_at_time('web_id', 'time', 'associations', 'desired_units', 'retrieval_mode', 'selected_fields', 'time_zone')
 
 Returns a single recorded value based on the passed time and retrieval mode from the stream.
 
@@ -193,6 +196,7 @@ Name | Type | Description | Notes
 ------------- | ------------- | ------------- | -------------
  **web_id** | **str**| The ID of the stream.. | [required]
  **time** | **str**| The timestamp at which the value is desired.. | [required]
+ **associations** | **str**| Associated values to return in the response, separated by semicolons (;). This call supports Annotations to return events with annotation values. If this parameter is not specified, annotation values are not returned.. | [optional]
  **desired_units** | **str**| The name or abbreviation of the desired units of measure for the returned value, as found in the UOM database associated with the attribute. If not specified for an attribute, the attribute's default unit of measure is used. If the underlying stream is a point, this value may not be specified, as points are not associated with a unit of measure.. | [optional]
  **retrieval_mode** | **str**| An optional value that determines the value to return when a value doesn't exist at the exact time specified. The default is 'Auto'.. | [optional]
  **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
@@ -201,12 +205,12 @@ Name | Type | Description | Notes
 
 ### Return type
 
-[**PITimedValue**](../models/PITimedValue.md)
+[**PIExtendedTimedValue**](../models/PIExtendedTimedValue.md)
 
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 
 # **get_recorded_at_times**
-> get_recorded_at_times('web_id', 'desired_units', 'retrieval_mode', 'selected_fields', 'sort_order', 'time', 'time_zone')
+> get_recorded_at_times('web_id', 'associations', 'desired_units', 'retrieval_mode', 'selected_fields', 'sort_order', 'time', 'time_zone')
 
 Retrieves recorded values at the specified times.
 
@@ -215,6 +219,7 @@ Retrieves recorded values at the specified times.
 Name | Type | Description | Notes
 ------------- | ------------- | ------------- | -------------
  **web_id** | **str**| The ID of the stream.. | [required]
+ **associations** | **str**| Associated values to return in the response, separated by semicolons (;). This call supports Annotations to return events with annotation values. If this parameter is not specified, annotation values are not returned.. | [optional]
  **desired_units** | **str**| The name or abbreviation of the desired units of measure for the returned value, as found in the UOM database associated with the attribute. If not specified for an attribute, the attribute's default unit of measure is used. If the underlying stream is a point, this value may not be specified, as points are not associated with a unit of measure.. | [optional]
  **retrieval_mode** | **str**| An optional value that determines the value to return when a value doesn't exist at the exact time specified. The default is 'Auto'.. | [optional]
  **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
@@ -225,7 +230,7 @@ Name | Type | Description | Notes
 
 ### Return type
 
-[**PITimedValues**](../models/PITimedValues.md)
+[**PIExtendedTimedValues**](../models/PIExtendedTimedValues.md)
 
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 
@@ -255,6 +260,26 @@ Name | Type | Description | Notes
 ### Return type
 
 [**PIItemsSummaryValue**](../models/PIItemsSummaryValue.md)
+
+[[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
+
+# **register_stream_update**
+> register_stream_update('web_id', 'selected_fields', 'web_id_type')
+
+Register for stream updates
+
+### Parameters
+
+Name | Type | Description | Notes
+------------- | ------------- | ------------- | -------------
+ **web_id** | **str**| The ID of the stream.. | [required]
+ **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
+ **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
+
+
+### Return type
+
+[**PIStreamUpdatesRegister**](../models/PIStreamUpdatesRegister.md)
 
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 
@@ -299,5 +324,26 @@ Name | Type | Description | Notes
 ### Return type
 
 None
+
+[[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
+
+# **retrieve_stream_update**
+> retrieve_stream_update('marker', 'desired_units', 'selected_fields', 'web_id_type')
+
+Receive stream updates
+
+### Parameters
+
+Name | Type | Description | Notes
+------------- | ------------- | ------------- | -------------
+ **marker** | **str**| Identifier of stream source and current position. | [required]
+ **desired_units** | **str**| The name or abbreviation of the desired units of measure for the returned value, as found in the UOM database associated with the attribute. If not specified for an attribute, the attribute's default unit of measure is used. If the underlying stream is a point, this value may not be specified, as points are not associated with a unit of measure.. | [optional]
+ **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
+ **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
+
+
+### Return type
+
+[**PIStreamUpdatesRetrieve**](../models/PIStreamUpdatesRetrieve.md)
 
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)

@@ -11,6 +11,7 @@ Name | Type | Notes
 **type** | **str**
 **type_qualifier** | **str**
 **default_units_name** | **str**
+**display_digits** | **int**
 **data_reference_plug_in** | **str**
 **config_string** | **str**
 **is_configuration_item** | **bool**
@@ -21,6 +22,9 @@ Name | Type | Notes
 **category_names** | **list[str]**
 **step** | **bool**
 **trait_name** | **str**
+**default_units_name_abbreviation** | **str**
+**span** | **float**
+**zero** | **float**
 **links** | **[**PIAttributeLinks**](../models/PIAttributeLinks.md)**
 **web_exception** | **[**PIWebException**](../models/PIWebException.md)**
 

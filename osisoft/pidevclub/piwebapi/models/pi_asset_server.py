@@ -27,6 +27,7 @@ class PIAssetServer(object):
 		'path': 'str',
 		'is_connected': 'bool',
 		'server_version': 'str',
+		'server_time': 'str',
 		'extended_properties': 'dict(str, PIValue)',
 		'links': 'PIAssetServerLinks',
 		'web_exception': 'PIWebException',
@@ -40,11 +41,12 @@ class PIAssetServer(object):
 		'path': 'Path',
 		'is_connected': 'IsConnected',
 		'server_version': 'ServerVersion',
+		'server_time': 'ServerTime',
 		'extended_properties': 'ExtendedProperties',
 		'links': 'Links',
 		'web_exception': 'WebException',
 	}
-	def __init__(self, web_id=None, id=None, name=None, description=None, path=None, is_connected=None, server_version=None, extended_properties=None, links=None, web_exception=None):
+	def __init__(self, web_id=None, id=None, name=None, description=None, path=None, is_connected=None, server_version=None, server_time=None, extended_properties=None, links=None, web_exception=None):
 
 		self._web_id = None
 		self._id = None
@@ -53,6 +55,7 @@ class PIAssetServer(object):
 		self._path = None
 		self._is_connected = None
 		self._server_version = None
+		self._server_time = None
 		self._extended_properties = None
 		self._links = None
 		self._web_exception = None
@@ -71,6 +74,8 @@ class PIAssetServer(object):
 			self.is_connected = is_connected
 		if server_version is not None:
 			self.server_version = server_version
+		if server_time is not None:
+			self.server_time = server_time
 		if extended_properties is not None:
 			self.extended_properties = extended_properties
 		if links is not None:
@@ -133,6 +138,14 @@ class PIAssetServer(object):
 	@server_version.setter
 	def server_version(self, server_version):
 		self._server_version = server_version
+
+	@property
+	def server_time(self):
+		return self._server_time
+
+	@server_time.setter
+	def server_time(self, server_time):
+		self._server_time = server_time
 
 	@property
 	def extended_properties(self):

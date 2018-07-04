@@ -16,6 +16,8 @@ Method | HTTP request | Description
 [**get_elements**](ElementApi.md#getelements) | **GET** /elements/{webId}/elements | Retrieve elements based on the specified conditions. By default, this method selects immediate children of the specified element.
 [**create_element**](ElementApi.md#createelement) | **POST** /elements/{webId}/elements | Create a child element.
 [**get_event_frames**](ElementApi.md#geteventframes) | **GET** /elements/{webId}/eventframes | Retrieve event frames that reference this element based on the specified conditions. By default, returns all event frames that reference this element that have been active in the past 8 hours.
+[**get_notification_rules**](ElementApi.md#getnotificationrules) | **GET** /elements/{webId}/notificationrules | Retrieve notification rules for an element
+[**get_paths**](ElementApi.md#getpaths) | **GET** /elements/{webId}/paths | Get a list of the full or relative paths to this element.
 [**get_referenced_elements**](ElementApi.md#getreferencedelements) | **GET** /elements/{webId}/referencedelements | Retrieve referenced elements based on the specified conditions. By default, this method selects all referenced elements of the current resource.
 [**add_referenced_element**](ElementApi.md#addreferencedelement) | **POST** /elements/{webId}/referencedelements | Add a reference to an existing element to the child elements collection.
 [**remove_referenced_element**](ElementApi.md#removereferencedelement) | **DELETE** /elements/{webId}/referencedelements | Remove a reference to an existing element from the child elements collection.
@@ -153,7 +155,7 @@ None
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 
 # **get_attributes**
-> get_attributes('web_id', 'category_name', 'max_count', 'name_filter', 'search_full_hierarchy', 'selected_fields', 'show_excluded', 'show_hidden', 'sort_field', 'sort_order', 'start_index', 'template_name', 'value_type', 'web_id_type')
+> get_attributes('web_id', 'category_name', 'max_count', 'name_filter', 'search_full_hierarchy', 'selected_fields', 'show_excluded', 'show_hidden', 'sort_field', 'sort_order', 'start_index', 'template_name', 'trait', 'trait_category', 'value_type', 'web_id_type')
 
 Get the attributes of the specified element.
 
@@ -173,6 +175,8 @@ Name | Type | Description | Notes
  **sort_order** | **str**| The order that the returned collection is sorted. The default is 'Ascending'.. | [optional]
  **start_index** | **int**| The starting index (zero based) of the items to be returned. The default is 0.. | [optional]
  **template_name** | **str**| Specify that returned attributes must be members of this template. The default is no template filter.. | [optional]
+ **trait** | **list[str]**| The name of the attribute trait. Multiple traits may be specified with multiple instances of the parameter.. | [optional]
+ **trait_category** | **list[str]**| The category of the attribute traits. Multiple categories may be specified with multiple instances of the parameter. If the parameter is not specified, or if its value is "all", then all attribute traits of all categories will be returned.. | [optional]
  **value_type** | **str**| Specify that returned attributes' value type must be the given value type. The default is no value type filter.. | [optional]
  **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
 
@@ -356,6 +360,45 @@ Name | Type | Description | Notes
 ### Return type
 
 [**PIItemsEventFrame**](../models/PIItemsEventFrame.md)
+
+[[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
+
+# **get_notification_rules**
+> get_notification_rules('web_id', 'selected_fields', 'web_id_type')
+
+Retrieve notification rules for an element
+
+### Parameters
+
+Name | Type | Description | Notes
+------------- | ------------- | ------------- | -------------
+ **web_id** | **str**| The ID of the resource to use as the root of the search.. | [required]
+ **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
+ **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
+
+
+### Return type
+
+[**PIItemsNotificationRule**](../models/PIItemsNotificationRule.md)
+
+[[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
+
+# **get_paths**
+> get_paths('web_id', 'relative_path')
+
+Get a list of the full or relative paths to this element.
+
+### Parameters
+
+Name | Type | Description | Notes
+------------- | ------------- | ------------- | -------------
+ **web_id** | **str**| The ID of the element.. | [required]
+ **relative_path** | **str**| The full path in ShortName format to the parent object that the returned paths should be relative. For example, "\\Server1\Database2" would return all the paths to the element relative to the database. A path of "\\Server1\Database2\RootElement" would return all paths to the element relative to "RootElement". If null, then all the full paths to the element will be returned.. | [optional]
+
+
+### Return type
+
+[**PIItemsstring**](../models/PIItemsstring.md)
 
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 

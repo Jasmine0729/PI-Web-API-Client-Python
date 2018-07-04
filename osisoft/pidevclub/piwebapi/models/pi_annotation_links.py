@@ -21,17 +21,27 @@ from six import iteritems
 class PIAnnotationLinks(object):
 	swagger_types = {
 		'owner': 'str',
+		'media_data': 'str',
+		'media_metadata': 'str',
 	}
 
 	attribute_map = {
 		'owner': 'Owner',
+		'media_data': 'MediaData',
+		'media_metadata': 'MediaMetadata',
 	}
-	def __init__(self, owner=None):
+	def __init__(self, owner=None, media_data=None, media_metadata=None):
 
 		self._owner = None
+		self._media_data = None
+		self._media_metadata = None
 
 		if owner is not None:
 			self.owner = owner
+		if media_data is not None:
+			self.media_data = media_data
+		if media_metadata is not None:
+			self.media_metadata = media_metadata
 
 	@property
 	def owner(self):
@@ -40,6 +50,22 @@ class PIAnnotationLinks(object):
 	@owner.setter
 	def owner(self, owner):
 		self._owner = owner
+
+	@property
+	def media_data(self):
+		return self._media_data
+
+	@media_data.setter
+	def media_data(self, media_data):
+		self._media_data = media_data
+
+	@property
+	def media_metadata(self):
+		return self._media_metadata
+
+	@media_metadata.setter
+	def media_metadata(self, media_metadata):
+		self._media_metadata = media_metadata
 
 	def to_dict(self):
 		result = {}

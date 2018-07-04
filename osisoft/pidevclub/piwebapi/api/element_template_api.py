@@ -373,16 +373,16 @@ class ElementTemplateApi(object):
 				collection_formats =collection_formats)
 
 
-	def get_attribute_templates(self, web_id, selected_fields=None, show_inherited=None, web_id_type=None, **kwargs):
+	def get_attribute_templates(self, web_id, depth_first_traverse=None, max_count=None, selected_fields=None, show_descendants=None, show_inherited=None, start_index=None, web_id_type=None, **kwargs):
 		kwargs['_return_http_data_only'] = True
 		if kwargs.get('callback'):
-			return self.get_attribute_templates_with_http_info(web_id, selected_fields, show_inherited, web_id_type, **kwargs)
+			return self.get_attribute_templates_with_http_info(web_id, depth_first_traverse, max_count, selected_fields, show_descendants, show_inherited, start_index, web_id_type, **kwargs)
 		else:
-			(data) = self.get_attribute_templates_with_http_info(web_id, selected_fields, show_inherited, web_id_type, **kwargs)
+			(data) = self.get_attribute_templates_with_http_info(web_id, depth_first_traverse, max_count, selected_fields, show_descendants, show_inherited, start_index, web_id_type, **kwargs)
 			return data
 
-	def get_attribute_templates_with_http_info(self, web_id, selected_fields=None, show_inherited=None, web_id_type=None, **kwargs):
-		all_params = ['web_id', 'selected_fields', 'show_inherited', 'web_id_type']
+	def get_attribute_templates_with_http_info(self, web_id, depth_first_traverse=None, max_count=None, selected_fields=None, show_descendants=None, show_inherited=None, start_index=None, web_id_type=None, **kwargs):
+		all_params = ['web_id', 'depth_first_traverse', 'max_count', 'selected_fields', 'show_descendants', 'show_inherited', 'start_index', 'web_id_type']
 		all_params.append('callback')
 		all_params.append('_return_http_data_only')
 		all_params.append('_preload_content')
@@ -416,12 +416,24 @@ class ElementTemplateApi(object):
 		if 'web_id' in params:
 			if (params['web_id'] is not None):
 				path_params['webId'] = params['web_id']
+		if 'depth_first_traverse' in params:
+			if (params['depth_first_traverse'] is not None):
+				query_params['depthFirstTraverse'] = params['depth_first_traverse']
+		if 'max_count' in params:
+			if (params['max_count'] is not None):
+				query_params['maxCount'] = params['max_count']
 		if 'selected_fields' in params:
 			if (params['selected_fields'] is not None):
 				query_params['selectedFields'] = params['selected_fields']
+		if 'show_descendants' in params:
+			if (params['show_descendants'] is not None):
+				query_params['showDescendants'] = params['show_descendants']
 		if 'show_inherited' in params:
 			if (params['show_inherited'] is not None):
 				query_params['showInherited'] = params['show_inherited']
+		if 'start_index' in params:
+			if (params['start_index'] is not None):
+				query_params['startIndex'] = params['start_index']
 		if 'web_id_type' in params:
 			if (params['web_id_type'] is not None):
 				query_params['webIdType'] = params['web_id_type']
@@ -521,6 +533,81 @@ class ElementTemplateApi(object):
 				collection_formats =collection_formats)
 
 
+	def get_base_element_templates(self, web_id, max_count=None, selected_fields=None, web_id_type=None, **kwargs):
+		kwargs['_return_http_data_only'] = True
+		if kwargs.get('callback'):
+			return self.get_base_element_templates_with_http_info(web_id, max_count, selected_fields, web_id_type, **kwargs)
+		else:
+			(data) = self.get_base_element_templates_with_http_info(web_id, max_count, selected_fields, web_id_type, **kwargs)
+			return data
+
+	def get_base_element_templates_with_http_info(self, web_id, max_count=None, selected_fields=None, web_id_type=None, **kwargs):
+		all_params = ['web_id', 'max_count', 'selected_fields', 'web_id_type']
+		all_params.append('callback')
+		all_params.append('_return_http_data_only')
+		all_params.append('_preload_content')
+		all_params.append('_request_timeout')
+
+		params = locals()
+		for key, val in iteritems(params['kwargs']):
+			if key not in all_params:
+				raise TypeError(
+					"Got an unexpected keyword argument '%s'"
+					" to method get_base_element_templates_with_http_info" % key
+				)
+			params[key] = val
+		del params['kwargs']
+
+		if ('web_id' not in params) or (params['web_id'] is None):
+			raise ValueError("Missing the required parameter `web_id` when calling `get_base_element_templates_with_http_info`")
+
+		collection_formats = {}
+
+		query_params = {}
+
+		path_params = {}
+
+		header_params = {}
+
+		form_params = []
+		local_var_files = {}
+
+		body_params = None
+		if 'web_id' in params:
+			if (params['web_id'] is not None):
+				path_params['webId'] = params['web_id']
+		if 'max_count' in params:
+			if (params['max_count'] is not None):
+				query_params['maxCount'] = params['max_count']
+		if 'selected_fields' in params:
+			if (params['selected_fields'] is not None):
+				query_params['selectedFields'] = params['selected_fields']
+		if 'web_id_type' in params:
+			if (params['web_id_type'] is not None):
+				query_params['webIdType'] = params['web_id_type']
+
+		header_params['Accept'] = self.api_client.\
+			select_header_accept(['application/json', 'text/json', 'text/html', 'application/x-ms-application'])
+
+
+		header_params['Content-Type'] = self.api_client.\
+			select_header_content_type([])
+
+		return self.api_client.call_api('/elementtemplates/{webId}/baseelementtemplates', 'GET',
+				path_params,
+				query_params,
+				header_params,
+				body =body_params,
+				post_params =form_params,
+				files =local_var_files,
+				response_type ='PIItemsElementTemplate',
+				callback =params.get('callback'),
+				_return_http_data_only =params.get('_return_http_data_only'),
+				_preload_content =params.get('_preload_content', True),
+				_request_timeout=params.get('_request_timeout'),
+				collection_formats =collection_formats)
+
+
 	def get_categories(self, web_id, selected_fields=None, show_inherited=None, web_id_type=None, **kwargs):
 		kwargs['_return_http_data_only'] = True
 		if kwargs.get('callback'):
@@ -589,6 +676,156 @@ class ElementTemplateApi(object):
 				post_params =form_params,
 				files =local_var_files,
 				response_type ='PIItemsElementCategory',
+				callback =params.get('callback'),
+				_return_http_data_only =params.get('_return_http_data_only'),
+				_preload_content =params.get('_preload_content', True),
+				_request_timeout=params.get('_request_timeout'),
+				collection_formats =collection_formats)
+
+
+	def get_derived_element_templates(self, web_id, max_count=None, selected_fields=None, show_descendants=None, web_id_type=None, **kwargs):
+		kwargs['_return_http_data_only'] = True
+		if kwargs.get('callback'):
+			return self.get_derived_element_templates_with_http_info(web_id, max_count, selected_fields, show_descendants, web_id_type, **kwargs)
+		else:
+			(data) = self.get_derived_element_templates_with_http_info(web_id, max_count, selected_fields, show_descendants, web_id_type, **kwargs)
+			return data
+
+	def get_derived_element_templates_with_http_info(self, web_id, max_count=None, selected_fields=None, show_descendants=None, web_id_type=None, **kwargs):
+		all_params = ['web_id', 'max_count', 'selected_fields', 'show_descendants', 'web_id_type']
+		all_params.append('callback')
+		all_params.append('_return_http_data_only')
+		all_params.append('_preload_content')
+		all_params.append('_request_timeout')
+
+		params = locals()
+		for key, val in iteritems(params['kwargs']):
+			if key not in all_params:
+				raise TypeError(
+					"Got an unexpected keyword argument '%s'"
+					" to method get_derived_element_templates_with_http_info" % key
+				)
+			params[key] = val
+		del params['kwargs']
+
+		if ('web_id' not in params) or (params['web_id'] is None):
+			raise ValueError("Missing the required parameter `web_id` when calling `get_derived_element_templates_with_http_info`")
+
+		collection_formats = {}
+
+		query_params = {}
+
+		path_params = {}
+
+		header_params = {}
+
+		form_params = []
+		local_var_files = {}
+
+		body_params = None
+		if 'web_id' in params:
+			if (params['web_id'] is not None):
+				path_params['webId'] = params['web_id']
+		if 'max_count' in params:
+			if (params['max_count'] is not None):
+				query_params['maxCount'] = params['max_count']
+		if 'selected_fields' in params:
+			if (params['selected_fields'] is not None):
+				query_params['selectedFields'] = params['selected_fields']
+		if 'show_descendants' in params:
+			if (params['show_descendants'] is not None):
+				query_params['showDescendants'] = params['show_descendants']
+		if 'web_id_type' in params:
+			if (params['web_id_type'] is not None):
+				query_params['webIdType'] = params['web_id_type']
+
+		header_params['Accept'] = self.api_client.\
+			select_header_accept(['application/json', 'text/json', 'text/html', 'application/x-ms-application'])
+
+
+		header_params['Content-Type'] = self.api_client.\
+			select_header_content_type([])
+
+		return self.api_client.call_api('/elementtemplates/{webId}/derivedelementtemplates', 'GET',
+				path_params,
+				query_params,
+				header_params,
+				body =body_params,
+				post_params =form_params,
+				files =local_var_files,
+				response_type ='PIItemsElementTemplate',
+				callback =params.get('callback'),
+				_return_http_data_only =params.get('_return_http_data_only'),
+				_preload_content =params.get('_preload_content', True),
+				_request_timeout=params.get('_request_timeout'),
+				collection_formats =collection_formats)
+
+
+	def get_notification_rule_templates(self, web_id, selected_fields=None, web_id_type=None, **kwargs):
+		kwargs['_return_http_data_only'] = True
+		if kwargs.get('callback'):
+			return self.get_notification_rule_templates_with_http_info(web_id, selected_fields, web_id_type, **kwargs)
+		else:
+			(data) = self.get_notification_rule_templates_with_http_info(web_id, selected_fields, web_id_type, **kwargs)
+			return data
+
+	def get_notification_rule_templates_with_http_info(self, web_id, selected_fields=None, web_id_type=None, **kwargs):
+		all_params = ['web_id', 'selected_fields', 'web_id_type']
+		all_params.append('callback')
+		all_params.append('_return_http_data_only')
+		all_params.append('_preload_content')
+		all_params.append('_request_timeout')
+
+		params = locals()
+		for key, val in iteritems(params['kwargs']):
+			if key not in all_params:
+				raise TypeError(
+					"Got an unexpected keyword argument '%s'"
+					" to method get_notification_rule_templates_with_http_info" % key
+				)
+			params[key] = val
+		del params['kwargs']
+
+		if ('web_id' not in params) or (params['web_id'] is None):
+			raise ValueError("Missing the required parameter `web_id` when calling `get_notification_rule_templates_with_http_info`")
+
+		collection_formats = {}
+
+		query_params = {}
+
+		path_params = {}
+
+		header_params = {}
+
+		form_params = []
+		local_var_files = {}
+
+		body_params = None
+		if 'web_id' in params:
+			if (params['web_id'] is not None):
+				path_params['webId'] = params['web_id']
+		if 'selected_fields' in params:
+			if (params['selected_fields'] is not None):
+				query_params['selectedFields'] = params['selected_fields']
+		if 'web_id_type' in params:
+			if (params['web_id_type'] is not None):
+				query_params['webIdType'] = params['web_id_type']
+
+		header_params['Accept'] = self.api_client.\
+			select_header_accept(['application/json', 'text/json', 'text/html', 'application/x-ms-application'])
+
+
+		header_params['Content-Type'] = self.api_client.\
+			select_header_content_type([])
+
+		return self.api_client.call_api('/elementtemplates/{webId}/notificationruletemplates', 'GET',
+				path_params,
+				query_params,
+				header_params,
+				body =body_params,
+				post_params =form_params,
+				files =local_var_files,
+				response_type ='PIItemsNotificationRuleTemplate',
 				callback =params.get('callback'),
 				_return_http_data_only =params.get('_return_http_data_only'),
 				_preload_content =params.get('_preload_content', True),

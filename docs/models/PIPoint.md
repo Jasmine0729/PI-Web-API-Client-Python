@@ -11,9 +11,12 @@ Name | Type | Notes
 **point_class** | **str**
 **point_type** | **str**
 **digital_set_name** | **str**
+**span** | **float**
+**zero** | **float**
 **engineering_units** | **str**
 **step** | **bool**
 **future** | **bool**
+**display_digits** | **int**
 **links** | **[**PIPointLinks**](../models/PIPointLinks.md)**
 **web_exception** | **[**PIWebException**](../models/PIWebException.md)**
 

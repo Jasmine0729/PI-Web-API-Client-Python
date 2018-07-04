@@ -21,6 +21,7 @@ from six import iteritems
 class PIAssetServerLinks(object):
 	swagger_types = {
 		'databases': 'str',
+		'notification_contact_templates': 'str',
 		'security_identities': 'str',
 		'security_mappings': 'str',
 		'unit_classes': 'str',
@@ -32,6 +33,7 @@ class PIAssetServerLinks(object):
 
 	attribute_map = {
 		'databases': 'Databases',
+		'notification_contact_templates': 'NotificationContactTemplates',
 		'security_identities': 'SecurityIdentities',
 		'security_mappings': 'SecurityMappings',
 		'unit_classes': 'UnitClasses',
@@ -40,9 +42,10 @@ class PIAssetServerLinks(object):
 		'security': 'Security',
 		'security_entries': 'SecurityEntries',
 	}
-	def __init__(self, databases=None, security_identities=None, security_mappings=None, unit_classes=None, analysis_rule_plug_ins=None, time_rule_plug_ins=None, security=None, security_entries=None):
+	def __init__(self, databases=None, notification_contact_templates=None, security_identities=None, security_mappings=None, unit_classes=None, analysis_rule_plug_ins=None, time_rule_plug_ins=None, security=None, security_entries=None):
 
 		self._databases = None
+		self._notification_contact_templates = None
 		self._security_identities = None
 		self._security_mappings = None
 		self._unit_classes = None
@@ -53,6 +56,8 @@ class PIAssetServerLinks(object):
 
 		if databases is not None:
 			self.databases = databases
+		if notification_contact_templates is not None:
+			self.notification_contact_templates = notification_contact_templates
 		if security_identities is not None:
 			self.security_identities = security_identities
 		if security_mappings is not None:
@@ -75,6 +80,14 @@ class PIAssetServerLinks(object):
 	@databases.setter
 	def databases(self, databases):
 		self._databases = databases
+
+	@property
+	def notification_contact_templates(self):
+		return self._notification_contact_templates
+
+	@notification_contact_templates.setter
+	def notification_contact_templates(self, notification_contact_templates):
+		self._notification_contact_templates = notification_contact_templates
 
 	@property
 	def security_identities(self):

@@ -179,7 +179,7 @@ class DataApi(object):
 			return
 
 		web_id = self.convert_path_to_web_id(path)
-		res = self.streamApi.get_recorded(web_id, boundary_type, desired_units, end_time, filter_expression, include_filtered_values, max_count, selected_fields, start_time, time_zone)
+		res = self.streamApi.get_recorded(web_id, boundary_type=boundary_type, desired_units=desired_units, end_time=end_time, filter_expression=filter_expression, include_filtered_values=include_filtered_values, max_count=max_count, selected_fields=selected_fields, start_time=start_time, time_zone=time_zone)
 		df = self.convert_to_df(res.items, selected_fields)
 		return df
 
@@ -191,7 +191,7 @@ class DataApi(object):
 			return
 
 		web_id = self.convert_path_to_web_id(path)
-		res = self.streamApi.get_interpolated(web_id, desired_units, end_time, filter_expression, include_filtered_values, interval, selected_fields, start_time, sync_time, sync_time_boundary_type, time_zone)
+		res = self.streamApi.get_interpolated(web_id, desired_units=desired_units, end_time=end_time, filter_expression=filter_expression, include_filtered_values=include_filtered_values, interval=interval, selected_fields=selected_fields, start_time=start_time, sync_time=sync_time, sync_time_boundary_type=sync_time_boundary_type, time_zone=time_zone)
 		df = self.convert_to_df(res.items, selected_fields)
 		return df
 
@@ -202,7 +202,7 @@ class DataApi(object):
 			return
 
 		web_id = self.convert_path_to_web_id(path)
-		res = self.streamApi.get_plot(web_id, desired_units, end_time, intervals, selected_fields, start_time, time_zone)
+		res = self.streamApi.get_plot(web_id, desired_units=desired_units, end_time=end_time, intervals=intervals, selected_fields=selected_fields, start_time=start_time, time_zone=time_zone)
 		df = self.convert_to_df(res.items, selected_fields)
 		return df
 
@@ -212,7 +212,7 @@ class DataApi(object):
 			return
 
 		web_ids = self.convert_paths_to_web_ids(paths)
-		res = self.streamSetApi.get_interpolated_ad_hoc(web_ids, end_time, filter_expression, include_filtered_values, interval, selected_fields, sort_field, sort_order, start_time, sync_time, sync_time_boundary_type, time_zone, web_id_type)
+		res = self.streamSetApi.get_interpolated_ad_hoc(web_ids, end_time=end_time, filter_expression=filter_expression, include_filtered_values=include_filtered_values, interval=interval, selected_fields=selected_fields, sort_field=sort_field, sort_order=sort_order, start_time=start_time, sync_time=sync_time, sync_time_boundary_type=sync_time_boundary_type, time_zone=time_zone, web_id_type=web_id_type)
 		df = self.convert_multiple_streams_to_df(res.items, True, web_ids, selected_fields, None)
 		return df
 
@@ -222,7 +222,7 @@ class DataApi(object):
 			return
 
 		web_ids = self.convert_paths_to_web_ids(paths)
-		res = self.streamSetApi.get_plot_ad_hoc(web_ids, end_time, intervals, selected_fields, sort_field, sort_order, start_time, time_zone, web_id_type)
+		res = self.streamSetApi.get_plot_ad_hoc(web_ids, end_time=end_time, intervals=intervals, selected_fields=selected_fields, sort_field=sort_field, sort_order=sort_order, start_time=start_time, time_zone=time_zone, web_id_type=web_id_type)
 		df = self.convert_multiple_streams_to_df(res.items, True, web_ids, selected_fields, None)
 		return df
 
@@ -232,7 +232,7 @@ class DataApi(object):
 			return
 
 		web_ids = self.convert_paths_to_web_ids(paths)
-		res = self.streamSetApi.get_recorded_ad_hoc(web_ids, boundary_type, end_time, filter_expression, include_filtered_values, max_count, selected_fields, sort_field, sort_order, start_time, time_zone, web_id_type)
+		res = self.streamSetApi.get_recorded_ad_hoc(web_ids, boundary_type = boundary_type, end_time=end_time, filter_expression=filter_expression, include_filtered_values=include_filtered_values, max_count=max_count, selected_fields=selected_fields, sort_field=sort_field, sort_order=sort_order, start_time=start_time, time_zone=time_zone, web_id_type=web_id_type)
 		df = self.convert_multiple_streams_to_df(res.items, False, web_ids, selected_fields, paths)
 		return df
 

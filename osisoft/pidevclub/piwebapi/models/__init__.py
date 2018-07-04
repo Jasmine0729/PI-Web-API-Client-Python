@@ -14,6 +14,7 @@
 	See the License for the specific language governing permissions and
 	limitations under the License.
 """
+from osisoft.pidevclub.piwebapi.models.pi_ambiguous import PIAmbiguous
 from osisoft.pidevclub.piwebapi.models.pi_analysis import PIAnalysis
 from osisoft.pidevclub.piwebapi.models.pi_analysis_category import PIAnalysisCategory
 from osisoft.pidevclub.piwebapi.models.pi_analysis_category_links import PIAnalysisCategoryLinks
@@ -40,6 +41,7 @@ from osisoft.pidevclub.piwebapi.models.pi_attribute_trait import PIAttributeTrai
 from osisoft.pidevclub.piwebapi.models.pi_attribute_trait_links import PIAttributeTraitLinks
 from osisoft.pidevclub.piwebapi.models.pi_cache_instance import PICacheInstance
 from osisoft.pidevclub.piwebapi.models.pi_channel_instance import PIChannelInstance
+from osisoft.pidevclub.piwebapi.models.pi_data_pipe_event import PIDataPipeEvent
 from osisoft.pidevclub.piwebapi.models.pi_data_server import PIDataServer
 from osisoft.pidevclub.piwebapi.models.pi_data_server_license import PIDataServerLicense
 from osisoft.pidevclub.piwebapi.models.pi_data_server_license_links import PIDataServerLicenseLinks
@@ -57,6 +59,8 @@ from osisoft.pidevclub.piwebapi.models.pi_enumeration_value_links import PIEnume
 from osisoft.pidevclub.piwebapi.models.pi_errors import PIErrors
 from osisoft.pidevclub.piwebapi.models.pi_event_frame import PIEventFrame
 from osisoft.pidevclub.piwebapi.models.pi_event_frame_links import PIEventFrameLinks
+from osisoft.pidevclub.piwebapi.models.pi_extended_timed_value import PIExtendedTimedValue
+from osisoft.pidevclub.piwebapi.models.pi_extended_timed_values import PIExtendedTimedValues
 from osisoft.pidevclub.piwebapi.models.pi_item_attribute import PIItemAttribute
 from osisoft.pidevclub.piwebapi.models.pi_item_element import PIItemElement
 from osisoft.pidevclub.piwebapi.models.pi_item_event_frame import PIItemEventFrame
@@ -87,6 +91,10 @@ from osisoft.pidevclub.piwebapi.models.pi_items_item_element import PIItemsItemE
 from osisoft.pidevclub.piwebapi.models.pi_items_item_event_frame import PIItemsItemEventFrame
 from osisoft.pidevclub.piwebapi.models.pi_items_item_point import PIItemsItemPoint
 from osisoft.pidevclub.piwebapi.models.pi_items_items_substatus import PIItemsItemsSubstatus
+from osisoft.pidevclub.piwebapi.models.pi_items_notification_contact_template import PIItemsNotificationContactTemplate
+from osisoft.pidevclub.piwebapi.models.pi_items_notification_rule import PIItemsNotificationRule
+from osisoft.pidevclub.piwebapi.models.pi_items_notification_rule_subscriber import PIItemsNotificationRuleSubscriber
+from osisoft.pidevclub.piwebapi.models.pi_items_notification_rule_template import PIItemsNotificationRuleTemplate
 from osisoft.pidevclub.piwebapi.models.pi_items_point import PIItemsPoint
 from osisoft.pidevclub.piwebapi.models.pi_items_point_attribute import PIItemsPointAttribute
 from osisoft.pidevclub.piwebapi.models.pi_items_security_entry import PIItemsSecurityEntry
@@ -94,8 +102,11 @@ from osisoft.pidevclub.piwebapi.models.pi_items_security_identity import PIItems
 from osisoft.pidevclub.piwebapi.models.pi_items_security_mapping import PIItemsSecurityMapping
 from osisoft.pidevclub.piwebapi.models.pi_items_security_rights import PIItemsSecurityRights
 from osisoft.pidevclub.piwebapi.models.pi_items_stream_summaries import PIItemsStreamSummaries
+from osisoft.pidevclub.piwebapi.models.pi_items_stream_updates_register import PIItemsStreamUpdatesRegister
+from osisoft.pidevclub.piwebapi.models.pi_items_stream_updates_retrieve import PIItemsStreamUpdatesRetrieve
 from osisoft.pidevclub.piwebapi.models.pi_items_stream_value import PIItemsStreamValue
 from osisoft.pidevclub.piwebapi.models.pi_items_stream_values import PIItemsStreamValues
+from osisoft.pidevclub.piwebapi.models.pi_itemsstring import PIItemsstring
 from osisoft.pidevclub.piwebapi.models.pi_items_substatus import PIItemsSubstatus
 from osisoft.pidevclub.piwebapi.models.pi_items_summary_value import PIItemsSummaryValue
 from osisoft.pidevclub.piwebapi.models.pi_items_table import PIItemsTable
@@ -104,6 +115,13 @@ from osisoft.pidevclub.piwebapi.models.pi_items_time_rule_plug_in import PIItems
 from osisoft.pidevclub.piwebapi.models.pi_items_unit_class import PIItemsUnitClass
 from osisoft.pidevclub.piwebapi.models.pi_landing import PILanding
 from osisoft.pidevclub.piwebapi.models.pi_landing_links import PILandingLinks
+from osisoft.pidevclub.piwebapi.models.pi_media_metadata import PIMediaMetadata
+from osisoft.pidevclub.piwebapi.models.pi_media_metadata_links import PIMediaMetadataLinks
+from osisoft.pidevclub.piwebapi.models.pi_notification_contact_template import PINotificationContactTemplate
+from osisoft.pidevclub.piwebapi.models.pi_notification_contact_template_links import PINotificationContactTemplateLinks
+from osisoft.pidevclub.piwebapi.models.pi_notification_rule import PINotificationRule
+from osisoft.pidevclub.piwebapi.models.pi_notification_rule_subscriber import PINotificationRuleSubscriber
+from osisoft.pidevclub.piwebapi.models.pi_notification_rule_template import PINotificationRuleTemplate
 from osisoft.pidevclub.piwebapi.models.pi_pagination_links import PIPaginationLinks
 from osisoft.pidevclub.piwebapi.models.pi_point import PIPoint
 from osisoft.pidevclub.piwebapi.models.pi_point_attribute import PIPointAttribute
@@ -123,8 +141,11 @@ from osisoft.pidevclub.piwebapi.models.pi_security_mapping import PISecurityMapp
 from osisoft.pidevclub.piwebapi.models.pi_security_mapping_links import PISecurityMappingLinks
 from osisoft.pidevclub.piwebapi.models.pi_security_rights import PISecurityRights
 from osisoft.pidevclub.piwebapi.models.pi_security_rights_links import PISecurityRightsLinks
+from osisoft.pidevclub.piwebapi.models.pi_stream_annotation import PIStreamAnnotation
 from osisoft.pidevclub.piwebapi.models.pi_stream_summaries import PIStreamSummaries
 from osisoft.pidevclub.piwebapi.models.pi_stream_summaries_links import PIStreamSummariesLinks
+from osisoft.pidevclub.piwebapi.models.pi_stream_updates_register import PIStreamUpdatesRegister
+from osisoft.pidevclub.piwebapi.models.pi_stream_updates_retrieve import PIStreamUpdatesRetrieve
 from osisoft.pidevclub.piwebapi.models.pi_stream_value import PIStreamValue
 from osisoft.pidevclub.piwebapi.models.pi_stream_value_links import PIStreamValueLinks
 from osisoft.pidevclub.piwebapi.models.pi_stream_values import PIStreamValues

@@ -10,6 +10,7 @@ Name | Type | Notes
 **path** | **str**
 **is_connected** | **bool**
 **server_version** | **str**
+**server_time** | **str**
 **extended_properties** | **dict(str, PIValue)**
 **links** | **[**PIAssetServerLinks**](../models/PIAssetServerLinks.md)**
 **web_exception** | **[**PIWebException**](../models/PIWebException.md)**

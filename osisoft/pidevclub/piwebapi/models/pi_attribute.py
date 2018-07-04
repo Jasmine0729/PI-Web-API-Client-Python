@@ -28,6 +28,7 @@ class PIAttribute(object):
 		'type': 'str',
 		'type_qualifier': 'str',
 		'default_units_name': 'str',
+		'display_digits': 'int',
 		'data_reference_plug_in': 'str',
 		'config_string': 'str',
 		'is_configuration_item': 'bool',
@@ -38,6 +39,9 @@ class PIAttribute(object):
 		'category_names': 'list[str]',
 		'step': 'bool',
 		'trait_name': 'str',
+		'default_units_name_abbreviation': 'str',
+		'span': 'float',
+		'zero': 'float',
 		'links': 'PIAttributeLinks',
 		'web_exception': 'PIWebException',
 	}
@@ -51,6 +55,7 @@ class PIAttribute(object):
 		'type': 'Type',
 		'type_qualifier': 'TypeQualifier',
 		'default_units_name': 'DefaultUnitsName',
+		'display_digits': 'DisplayDigits',
 		'data_reference_plug_in': 'DataReferencePlugIn',
 		'config_string': 'ConfigString',
 		'is_configuration_item': 'IsConfigurationItem',
@@ -61,10 +66,13 @@ class PIAttribute(object):
 		'category_names': 'CategoryNames',
 		'step': 'Step',
 		'trait_name': 'TraitName',
+		'default_units_name_abbreviation': 'DefaultUnitsNameAbbreviation',
+		'span': 'Span',
+		'zero': 'Zero',
 		'links': 'Links',
 		'web_exception': 'WebException',
 	}
-	def __init__(self, web_id=None, id=None, name=None, description=None, path=None, type=None, type_qualifier=None, default_units_name=None, data_reference_plug_in=None, config_string=None, is_configuration_item=None, is_excluded=None, is_hidden=None, is_manual_data_entry=None, has_children=None, category_names=None, step=None, trait_name=None, links=None, web_exception=None):
+	def __init__(self, web_id=None, id=None, name=None, description=None, path=None, type=None, type_qualifier=None, default_units_name=None, display_digits=None, data_reference_plug_in=None, config_string=None, is_configuration_item=None, is_excluded=None, is_hidden=None, is_manual_data_entry=None, has_children=None, category_names=None, step=None, trait_name=None, default_units_name_abbreviation=None, span=None, zero=None, links=None, web_exception=None):
 
 		self._web_id = None
 		self._id = None
@@ -74,6 +82,7 @@ class PIAttribute(object):
 		self._type = None
 		self._type_qualifier = None
 		self._default_units_name = None
+		self._display_digits = None
 		self._data_reference_plug_in = None
 		self._config_string = None
 		self._is_configuration_item = None
@@ -84,6 +93,9 @@ class PIAttribute(object):
 		self._category_names = None
 		self._step = None
 		self._trait_name = None
+		self._default_units_name_abbreviation = None
+		self._span = None
+		self._zero = None
 		self._links = None
 		self._web_exception = None
 
@@ -103,6 +115,8 @@ class PIAttribute(object):
 			self.type_qualifier = type_qualifier
 		if default_units_name is not None:
 			self.default_units_name = default_units_name
+		if display_digits is not None:
+			self.display_digits = display_digits
 		if data_reference_plug_in is not None:
 			self.data_reference_plug_in = data_reference_plug_in
 		if config_string is not None:
@@ -123,6 +137,12 @@ class PIAttribute(object):
 			self.step = step
 		if trait_name is not None:
 			self.trait_name = trait_name
+		if default_units_name_abbreviation is not None:
+			self.default_units_name_abbreviation = default_units_name_abbreviation
+		if span is not None:
+			self.span = span
+		if zero is not None:
+			self.zero = zero
 		if links is not None:
 			self.links = links
 		if web_exception is not None:
@@ -191,6 +211,14 @@ class PIAttribute(object):
 	@default_units_name.setter
 	def default_units_name(self, default_units_name):
 		self._default_units_name = default_units_name
+
+	@property
+	def display_digits(self):
+		return self._display_digits
+
+	@display_digits.setter
+	def display_digits(self, display_digits):
+		self._display_digits = display_digits
 
 	@property
 	def data_reference_plug_in(self):
@@ -271,6 +299,30 @@ class PIAttribute(object):
 	@trait_name.setter
 	def trait_name(self, trait_name):
 		self._trait_name = trait_name
+
+	@property
+	def default_units_name_abbreviation(self):
+		return self._default_units_name_abbreviation
+
+	@default_units_name_abbreviation.setter
+	def default_units_name_abbreviation(self, default_units_name_abbreviation):
+		self._default_units_name_abbreviation = default_units_name_abbreviation
+
+	@property
+	def span(self):
+		return self._span
+
+	@span.setter
+	def span(self, span):
+		self._span = span
+
+	@property
+	def zero(self):
+		return self._zero
+
+	@zero.setter
+	def zero(self, zero):
+		self._zero = zero
 
 	@property
 	def links(self):

@@ -142,7 +142,7 @@ Retrieves the specified license for the given Data Server. The fields of the res
 Name | Type | Description | Notes
 ------------- | ------------- | ------------- | -------------
  **web_id** | **str**| The ID of the server.. | [required]
- **module** | **str**| The case-sensitive name of the module.. | [required]
+ **module** | **str**| The case-sensitive name of the module.. | [optional]
  **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
  **web_id_type** | **str**| Optional parameter. Used to specify the type of WebID. Useful for URL brevity and other special cases. Default is the value of the configuration item "WebIDType".. | [optional]
 

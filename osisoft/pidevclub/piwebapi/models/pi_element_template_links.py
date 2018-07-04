@@ -25,7 +25,10 @@ class PIElementTemplateLinks(object):
 		'database': 'str',
 		'categories': 'str',
 		'base_template': 'str',
+		'base_templates': 'str',
+		'derived_templates': 'str',
 		'default_attribute': 'str',
+		'notification_rule_templates': 'str',
 		'security': 'str',
 		'security_entries': 'str',
 	}
@@ -36,18 +39,24 @@ class PIElementTemplateLinks(object):
 		'database': 'Database',
 		'categories': 'Categories',
 		'base_template': 'BaseTemplate',
+		'base_templates': 'BaseTemplates',
+		'derived_templates': 'DerivedTemplates',
 		'default_attribute': 'DefaultAttribute',
+		'notification_rule_templates': 'NotificationRuleTemplates',
 		'security': 'Security',
 		'security_entries': 'SecurityEntries',
 	}
-	def __init__(self, analysis_templates=None, attribute_templates=None, database=None, categories=None, base_template=None, default_attribute=None, security=None, security_entries=None):
+	def __init__(self, analysis_templates=None, attribute_templates=None, database=None, categories=None, base_template=None, base_templates=None, derived_templates=None, default_attribute=None, notification_rule_templates=None, security=None, security_entries=None):
 
 		self._analysis_templates = None
 		self._attribute_templates = None
 		self._database = None
 		self._categories = None
 		self._base_template = None
+		self._base_templates = None
+		self._derived_templates = None
 		self._default_attribute = None
+		self._notification_rule_templates = None
 		self._security = None
 		self._security_entries = None
 
@@ -61,8 +70,14 @@ class PIElementTemplateLinks(object):
 			self.categories = categories
 		if base_template is not None:
 			self.base_template = base_template
+		if base_templates is not None:
+			self.base_templates = base_templates
+		if derived_templates is not None:
+			self.derived_templates = derived_templates
 		if default_attribute is not None:
 			self.default_attribute = default_attribute
+		if notification_rule_templates is not None:
+			self.notification_rule_templates = notification_rule_templates
 		if security is not None:
 			self.security = security
 		if security_entries is not None:
@@ -109,12 +124,36 @@ class PIElementTemplateLinks(object):
 		self._base_template = base_template
 
 	@property
+	def base_templates(self):
+		return self._base_templates
+
+	@base_templates.setter
+	def base_templates(self, base_templates):
+		self._base_templates = base_templates
+
+	@property
+	def derived_templates(self):
+		return self._derived_templates
+
+	@derived_templates.setter
+	def derived_templates(self, derived_templates):
+		self._derived_templates = derived_templates
+
+	@property
 	def default_attribute(self):
 		return self._default_attribute
 
 	@default_attribute.setter
 	def default_attribute(self, default_attribute):
 		self._default_attribute = default_attribute
+
+	@property
+	def notification_rule_templates(self):
+		return self._notification_rule_templates
+
+	@notification_rule_templates.setter
+	def notification_rule_templates(self, notification_rule_templates):
+		self._notification_rule_templates = notification_rule_templates
 
 	@property
 	def security(self):

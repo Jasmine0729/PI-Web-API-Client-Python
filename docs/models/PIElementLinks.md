@@ -21,5 +21,6 @@ Name | Type | Notes
 **end_value** | **str**
 **security** | **str**
 **security_entries** | **str**
+**notification_rules** | **str**
 
 [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)

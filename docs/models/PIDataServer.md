@@ -9,6 +9,7 @@ Name | Type | Notes
 **path** | **str**
 **is_connected** | **bool**
 **server_version** | **str**
+**server_time** | **str**
 **links** | **[**PIDataServerLinks**](../models/PIDataServerLinks.md)**
 **web_exception** | **[**PIWebException**](../models/PIWebException.md)**
 
