@@ -246,6 +246,7 @@ The path from the methods above should start with "pi:" (if your stream is a PI 
     pi_attribute_web_id_info = client.webIdHelper.get_web_id_info(pi_attribute_web_id)
     pi_element_web_id_info= client.webIdHelper.get_web_id_info(pi_element_web_id)
     pi_dataServer_web_id_info = client.webIdHelper.get_web_id_info(pi_data_server_web_id)
+```
 	
 ### StreamUpdates
 
@@ -264,7 +265,7 @@ The path from the methods above should start with "pi:" (if your stream is a PI 
 		time.sleep(30)
 		k = k-1
     self.assertTrue(events.__len__() > 0)
-	
+```	
 
 
 
