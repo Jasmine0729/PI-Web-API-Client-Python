@@ -23,6 +23,11 @@ from osisoft.pidevclub.piwebapi.rest import ApiException
 
 class TestData(unittest.TestCase):
     def getPIWebApiClient(self):
+        """
+            TODO: The PI Web API client must provide a user name and password when using “basic” authentication
+            Store passwords outside of the code in a hardware TPM, trusted service (credential manager) or in a protected file.
+            Code to return the user name and password is not shown here.
+        """
         return PIWebApiClient("https://devdata.osisoft.com/piwebapi", False, "webapiuser", "!try3.14webapi!", True)
 
 

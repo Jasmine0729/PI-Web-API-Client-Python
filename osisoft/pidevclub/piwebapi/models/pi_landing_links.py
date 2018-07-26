@@ -22,7 +22,6 @@ class PILandingLinks(object):
 	swagger_types = {
 		'asset_servers': 'str',
 		'data_servers': 'str',
-		'p_i_directory': 'str',
 		'search': 'str',
 		'system': 'str',
 	}
@@ -30,15 +29,13 @@ class PILandingLinks(object):
 	attribute_map = {
 		'asset_servers': 'AssetServers',
 		'data_servers': 'DataServers',
-		'p_i_directory': 'PIDirectory',
 		'search': 'Search',
 		'system': 'System',
 	}
-	def __init__(self, asset_servers=None, data_servers=None, p_i_directory=None, search=None, system=None):
+	def __init__(self, asset_servers=None, data_servers=None, search=None, system=None):
 
 		self._asset_servers = None
 		self._data_servers = None
-		self._p_i_directory = None
 		self._search = None
 		self._system = None
 
@@ -46,8 +43,6 @@ class PILandingLinks(object):
 			self.asset_servers = asset_servers
 		if data_servers is not None:
 			self.data_servers = data_servers
-		if p_i_directory is not None:
-			self.p_i_directory = p_i_directory
 		if search is not None:
 			self.search = search
 		if system is not None:
@@ -68,14 +63,6 @@ class PILandingLinks(object):
 	@data_servers.setter
 	def data_servers(self, data_servers):
 		self._data_servers = data_servers
-
-	@property
-	def p_i_directory(self):
-		return self._p_i_directory
-
-	@p_i_directory.setter
-	def p_i_directory(self, p_i_directory):
-		self._p_i_directory = p_i_directory
 
 	@property
 	def search(self):

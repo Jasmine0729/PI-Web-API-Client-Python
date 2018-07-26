@@ -832,7 +832,7 @@ class StreamSetApi(object):
 				body =body_params,
 				post_params =form_params,
 				files =local_var_files,
-				response_type ='PIItemsStreamValues',
+				response_type ='PIItemsStreamValue',
 				callback =params.get('callback'),
 				_return_http_data_only =params.get('_return_http_data_only'),
 				_preload_content =params.get('_preload_content', True),

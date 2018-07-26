@@ -20,8 +20,7 @@ import  unittest
 from threading import Thread
 from time import sleep, time
 
-from osisoft.pidevclub.piwebapi.models import PIAnalysis, PIItemsStreamValues, PIStreamValues, PITimedValue, PIRequest, \
-    PIResponse, PIPoint, PIRequestTemplate
+from osisoft.pidevclub.piwebapi.models import PIAnalysis, PIItemsStreamValues, PIStreamValues, PITimedValue, PIRequest, PIResponse, PIPoint, PIRequestTemplate, PIValueQuery, PISearchByAttribute
 from osisoft.pidevclub.piwebapi.pi_web_api_client import PIWebApiClient
 from osisoft.pidevclub.piwebapi.rest import ApiException
 import time
@@ -31,6 +30,11 @@ import time
 class TestMain(unittest.TestCase):
 
     def getPIWebApiClient(self):
+        """
+            TODO: The PI Web API client must provide a user name and password when using “basic” authentication
+            Store passwords outside of the code in a hardware TPM, trusted service (credential manager) or in a protected file.
+            Code to return the user name and password is not shown here.
+        """
         return PIWebApiClient("https://devdata.osisoft.com/piwebapi", useKerberos=False, username="webapiuser", password="!try3.14webapi!", verifySsl=False)
 
 
@@ -121,6 +125,21 @@ class TestMain(unittest.TestCase):
     def test_getElement(self):
         client = self.getPIWebApiClient()
         element = client.element.get_by_path("\\\\PISRV1\\Universities\\UC Davis\\Buildings\\Activities and Recreation Center")
+        pass
+
+    def test_searchByAttribute(self):
+        client = self.getPIWebApiClient()
+        element = client.element.get_by_path("\\\\PISRV1\\City Bikes\\(TO)BIKE  Torino")
+        element_template = client.elementTemplate.get_by_path("\\\\PISRV1\\City Bikes\\ElementTemplates[BikeStationTemplate]")
+        value_query1 = PIValueQuery(attribute_name="Latitude", attribute_value=0, search_operator="GreaterThan")
+        values_queries = list()
+        values_queries.append(value_query1)
+
+        search_by_attribute = PISearchByAttribute(search_root=element.web_id, element_template  = element_template.web_id, value_queries = values_queries);
+
+
+        response =  client.element.create_search_by_attribute(search_by_attribute, False)
+
         pass
 
 
