@@ -54,7 +54,7 @@ All classes and methods are described on the [DOCUMENTATION](DOCUMENTATION.md).
 
 ## Contributing
 
-We welcome new contributors of all experience levels. Please follow our [this page](https://github.com/osimloeff/PI-Web-API-Client-Python/blob/master/CONTRIBUTING.MD) to learn how to do it.
+We welcome new contributors of all experience levels. Please follow our [this page](https://github.com/osimloeff/PI-Web-API-Client-Python/blob/master/CONTRIBUTING.md) to learn how to do it.
  
 ## Examples
 
