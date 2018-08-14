@@ -44,6 +44,3 @@ main repository on GitHub, clone, and develop on a branch. Steps:
 5. Follow [these instructions](https://help.github.com/articles/creating-a-pull-request-from-a-fork) or [this video](https://www.youtube.com/watch?v=YTbRzhQju4c)
 to create a pull request from your fork. This will send an email to the committers.
 
-(If any of the above seems like magic to you, please look up the
-[Git documentation](https://git-scm.com/documentation) on the web, or ask a friend or another contributor for help.)
-

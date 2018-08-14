@@ -95,7 +95,7 @@ Pandas Dataframe
 
 
 # **get_summary_values**
-> get_summary('path', 'calculation_basis', 'end_time', 'filter_expression', 'sample_interval', 'sample_type', 'selected_fields', 'start_time', 'summary_duration', 'summary_type', 'time_type', 'time_zone')
+> get_summary_values('path', 'calculation_basis', 'end_time', 'filter_expression', 'sample_interval', 'sample_type', 'selected_fields', 'start_time', 'summary_duration', 'summary_type', 'time_type', 'time_zone')
 
 Returns a data frame with the summary over the specified time range for the stream.
 
