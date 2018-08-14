@@ -5,6 +5,7 @@ Method | HTTP request | Description
 [**get_recorded_values**](DataApi.md#get_recorded_values) |  Returns a pandas dataframe with compressed values for the requested time range from the source provider.
 [**get_interpolated_values**](DataApi.md#get_interpolated_values) | Retrieves a pandas dataframe with interpolated values over the specified time range at the specified sampling interval.
 [**get_plot_values**](DataApi.md#get_plot_values*) | Retrieves a pandas dataframe with values over the specified time range suitable for plotting over the number of intervals (typically represents pixels).
+[**get_summary_values**](DataApi.md#get_summary_values*) | Returns a data frame with the summary over the specified time range for the stream.
 [**get_multiple_recorded_values**](DataApi.md#get_multiple_recorded_values) | Returns an array of pandas dataframe with recorded values of the specified streams.
 [**get_multiple_interpolated_values**](DataApi.md#get_multiple_interpolated_values) | Returns a dataframe with interpolated values of the specified streams over the specified time range at the specified sampling interval.
 [**get_multiple_plot_values**](DataApi.md#get_multiple_plot_values) |  Returns a pandas dataframe with values of the specified streams over the specified time range suitable for plotting over the number of intervals (typically represents pixels).
@@ -92,6 +93,35 @@ Pandas Dataframe
 
 [[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 
+
+# **get_summary_values**
+> get_summary('path', 'calculation_basis', 'end_time', 'filter_expression', 'sample_interval', 'sample_type', 'selected_fields', 'start_time', 'summary_duration', 'summary_type', 'time_type', 'time_zone')
+
+Returns a data frame with the summary over the specified time range for the stream.
+
+### Parameters
+
+Name | Type | Description | Notes
+------------- | ------------- | ------------- | -------------
+ **path** | **list[str]**| The paths of  multiple streams (for a PI Point use "pi:\\servername\pointname" or "af:\\afservername\database\element|attribute" for an attribute). | [required]
+ **calculation_basis** | **str**| Specifies the method of evaluating the data over the time range. The default is 'TimeWeighted'.. | [optional]
+ **end_time** | **str**| An optional end time. The default is '*' for element attributes and points. For event frame attributes, the default is the event frame's end time, or '*' if that is not set. Note that if endTime is earlier than startTime, the resulting values will be in time-descending order.. | [optional]
+ **filter_expression** | **str**| A string containing a filter expression. Expression variables are relative to the attribute. Use '.' to reference the containing attribute.. | [optional]
+ **sample_interval** | **str**| When the sampleType is Interval, sampleInterval specifies how often the filter expression is evaluated when computing the summary for an interval.. | [optional]
+ **sample_type** | **str**| Defines the evaluation of an expression over a time range. The default is 'ExpressionRecordedValues'.. | [optional]
+ **selected_fields** | **str**| List of fields to be returned in the response, separated by semicolons (;). If this parameter is not specified, all available fields will be returned.. | [optional]
+ **start_time** | **str**| An optional start time. The default is '*-1d' for element attributes and points. For event frame attributes, the default is the event frame's start time, or '*-1d' if that is not set.. | [optional]
+ **summary_duration** | **str**| The duration of each summary interval. If specified in hours, minutes, seconds, or milliseconds, the summary durations will be evenly spaced UTC time intervals. Longer interval types are interpreted using wall clock rules and are time zone dependent.. | [optional]
+ **summary_type** | **list[str]**| Specifies the kinds of summaries to produce over the range. The default is 'Total'. Multiple summary types may be specified by using multiple instances of summaryType.. | [optional]
+ **time_type** | **str**| Specifies how to calculate the timestamp for each interval. The default is 'Auto'.. | [optional]
+ **time_zone** | **str**| The time zone in which the time string will be interpreted. This parameter will be ignored if a time zone is specified in the time string. If no time zone is specified in either places, the PI Web API server time zone will be used.. | [optional]
+
+
+### Return type
+
+[**PIItemsSummaryValue**](../models/PIItemsSummaryValue.md)
+
+[[Back to top]](#) [[Back to API list]](../../DOCUMENTATION.md#documentation-for-api-endpoints) [[Back to Model list]](../../DOCUMENTATION.md#documentation-for-models) [[Back to DOCUMENTATION]](../../DOCUMENTATION.md)
 
 
 # **get_multiple_recorded_values**

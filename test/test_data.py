@@ -72,6 +72,14 @@ class TestData(unittest.TestCase):
         df12 = client.data.get_plot_values("af:\\\\PISRV1\\Universities\\UC Davis\\Buildings\\Academic Surge Building\\Electricity|AnnualUsage", None, "*", 20, None, "*-40d", None)
         pass
 
+    def test_data_summary(self):
+        client = self.getPIWebApiClient()
+        df1 = client.data.get_summary_values("pi:\\\\PISRV1\\sinusoid", start_time="*-1d", end_time="*",
+                                             summary_type=['Average'], summary_duration='1h')
+        df2 = client.data.get_summary_values("pi:\\\\PISRV1\\sinusoid", start_time="*-1d", end_time="*",
+                                             summary_type=['Average', 'Total'], summary_duration='1h')
+        pass
+
     def test_getExceptionError(self):
         client = self.getPIWebApiClient()
         paths=["pi:\\\\PISRV1\\sinusoid", "pi:\\\\PISRV1\\sinusoidu", "pi:\\\\PISRV1\\cdt158"]

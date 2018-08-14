@@ -92,7 +92,87 @@ class DataApi(object):
 				dfs[key] = df
 			return dfs
 
+	def convert_summary_to_df(self, items, selected_fields):
 
+		if (items is None):
+			raise Exception('The returned data is Null or None')
+
+		streamsLength = len(items)
+		if (streamsLength == 0):
+			raise Exception('The returned data is Null or None')
+
+
+		addValues = False
+		addTimeStamp = False
+		addUnitAbbr = False
+		addGood = False
+		addQuestionable = False
+		addSubstituted = False
+		value = []
+		timestamp = []
+		unitsAbbreviation = []
+		good = []
+		questionable = []
+		substituted = []
+		summaryType = []
+
+		if (selected_fields != None and selected_fields != ""):
+			if ("timestamp" in selected_fields):
+				addTimeStamp = True
+			if ("value" in selected_fields):
+				addValues = True
+
+			if ("questionable" in selected_fields):
+				addQuestionable = True
+
+			if ("unitabbr" in selected_fields):
+				addUnitAbbr = True
+
+			if ("good" in selected_fields):
+				addGood = True
+
+			if ("substituted" in selected_fields):
+				addSubstituted = True
+		else:
+			addValues = True
+			addTimeStamp = True
+			addUnitAbbr = True
+			addGood = True
+			addQuestionable = True
+			addSubstituted = True
+
+
+		for	item in items:
+			summaryType.append(item.type)
+			if (addValues == True):
+				value.append(item.value.value)
+			if (addTimeStamp == True):
+				timestamp.append(item.value.timestamp)
+			if (addUnitAbbr == True):
+				unitsAbbreviation.append(item.value.units_abbreviation)
+			if (addGood == True):
+				good.append(item.value.good)
+			if (addQuestionable == True):
+				questionable.append(item.value.questionable)
+			if addSubstituted == True:
+				substituted.append(item.value.substituted)
+
+		data = {}
+		data['SummaryType'] = summaryType
+		if (addValues == True):
+			data['Value'] = value;
+		if (addTimeStamp == True):
+			data['Timestamp'] = timestamp;
+		if (addUnitAbbr == True):
+			data['UnitsAbbreviation'] = unitsAbbreviation;
+		if (addGood == True):
+			data['Good'] = good;
+		if (addQuestionable == True):
+			data['Questionable'] = questionable;
+		if (addSubstituted == True):
+			data['Substituted'] = substituted;
+		df = pd.DataFrame(data)
+		return df
 
 	def convert_to_df(self, items, selected_fields):
 
@@ -171,7 +251,7 @@ class DataApi(object):
 		if (addSubstituded == True):
 			data['Substituted'] = substituted;
 		df = pd.DataFrame(data)
-		return  df
+		return df
 
 	def get_recorded_values(self, path, boundary_type=None, desired_units=None, end_time="*", filter_expression=None, include_filtered_values=None, max_count=None, selected_fields=None, start_time="*-1h", time_zone=None):
 		if (path is None):
@@ -204,6 +284,18 @@ class DataApi(object):
 		web_id = self.convert_path_to_web_id(path)
 		res = self.streamApi.get_plot(web_id, desired_units=desired_units, end_time=end_time, intervals=intervals, selected_fields=selected_fields, start_time=start_time, time_zone=time_zone)
 		df = self.convert_to_df(res.items, selected_fields)
+		return df
+
+	def get_summary_values(self, path, calculation_basis='TimeWeighted', end_time="*", filter_expression=None, sample_interval=None, sample_type='ExpressionRecordedValues', selected_fields=None, start_time="*-1d", summary_duration=None, summary_type=['Total'], time_type='Auto', time_zone=None):
+		if (path is None):
+			print("The variable path cannot be null.")
+			return
+
+		web_id = self.convert_path_to_web_id(path)
+		res = self.streamApi.get_summary(web_id, calculation_basis, end_time, filter_expression,
+										 sample_interval, sample_type, selected_fields, start_time, summary_duration,
+										 summary_type, time_type, time_zone)
+		df = self.convert_summary_to_df(res.items, selected_fields)
 		return df
 
 	def get_multiple_interpolated_values(self, paths, end_time="*", filter_expression=None, include_filtered_values=None, interval="1h", selected_fields=None, sort_field=None, sort_order=None, start_time="*-1d", sync_time=None, sync_time_boundary_type=None, time_zone=None, web_id_type=None):
